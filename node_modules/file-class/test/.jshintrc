@@ -1,0 +1,12 @@
+{
+    "asi":    false,
+    "boss":   false,
+    "curly":  false,
+    "debug":  false,
+    "es5":    true,
+    "evil":   false,
+    "expr":   true,
+    "unused": true,
+    "strict": false,
+    "white":  true
+}

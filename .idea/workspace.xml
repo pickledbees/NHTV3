@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f4243891-a321-4c2a-8ad4-946c90f9bc7d" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="NHTV3" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="143">
+              <caret line="11" column="94" selection-start-line="11" selection-start-column="94" selection-end-line="11" selection-end-column="94" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bot_modules/telegrambots.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
+              <folding>
+                <element signature="n#!!block;n#onText#0;n#PubsBot#0" />
+                <element signature="n#!!block;n#onCommand#0;n#PubsBot#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bot_modules/display.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/photo_display_client.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="52">
+              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/text_display_client.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bot_modules/file_util.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>command</find>
+      <find>texts</find>
+      <find>cache</find>
+      <find>listenerCache</find>
+      <find>Telebot</find>
+      <find>_request</find>
+      <find>MessageStore</find>
+      <find>MessagesManager</find>
+      <find>clear()</find>
+      <find>_display</find>
+      <find>PhotoPostDisplay</find>
+      <find>TextPostDisplay</find>
+      <find>_listener</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>textHandler</replace>
+      <replace>text</replace>
+      <replace>textHandlers</replace>
+      <replace>listenerCache</replace>
+      <replace>textListenerCache</replace>
+      <replace>PubsBot</replace>
+      <replace>MessageHandler</replace>
+      <replace>MessageManager</replace>
+      <replace>empty()</replace>
+      <replace>displayCallback</replace>
+      <replace>PhotoDisplay</replace>
+      <replace>_callback</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/NHTV3" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/custom_modules/test.js" />
+        <option value="$PROJECT_DIR$/custom_modules/cache.js" />
+        <option value="$PROJECT_DIR$/custom_modules/promisify.js" />
+        <option value="$PROJECT_DIR$/custom_modules/custom_promisify.js" />
+        <option value="$PROJECT_DIR$/custom_modules/telebots.js" />
+        <option value="$PROJECT_DIR$/custom_modules/Telebot.js" />
+        <option value="$PROJECT_DIR$/custom_modules/logger.js" />
+        <option value="$PROJECT_DIR$/custom_modules/telebot.js" />
+        <option value="$PROJECT_DIR$/scripts/displayer.js" />
+        <option value="$PROJECT_DIR$/scripts/photo_post_handler.js" />
+        <option value="$PROJECT_DIR$/scripts/telebot.js" />
+        <option value="$PROJECT_DIR$/scripts/text_post_handler.js" />
+        <option value="$PROJECT_DIR$/scripts/posthandlers.js" />
+        <option value="$PROJECT_DIR$/scripts/post_handlers.js" />
+        <option value="$PROJECT_DIR$/scripts/errors.js" />
+        <option value="$PROJECT_DIR$/scripts/logger.js" />
+        <option value="$PROJECT_DIR$/scripts/pubsbot.js" />
+        <option value="$PROJECT_DIR$/scripts/telebots.js" />
+        <option value="$PROJECT_DIR$/texts.js" />
+        <option value="$PROJECT_DIR$/scripts/data_structs.js" />
+        <option value="$PROJECT_DIR$/scripts/telegrambots.js" />
+        <option value="$PROJECT_DIR$/scripts/handler.js" />
+        <option value="$PROJECT_DIR$/scripts/bot_file_util.js" />
+        <option value="$PROJECT_DIR$/scripts/file_util.js" />
+        <option value="$PROJECT_DIR$/scripts/carousel.js" />
+        <option value="$PROJECT_DIR$/carousel.html" />
+        <option value="$PROJECT_DIR$/custom_elements/carousel.html" />
+        <option value="$PROJECT_DIR$/custom_elements/carousel2.js" />
+        <option value="$PROJECT_DIR$/custom_elements/test.html" />
+        <option value="$PROJECT_DIR$/custom_elements/carousel.js" />
+        <option value="$PROJECT_DIR$/pages/telegram_feed.html" />
+        <option value="$PROJECT_DIR$/pages/page_listing.js" />
+        <option value="$PROJECT_DIR$/pages/main_display.html" />
+        <option value="$PROJECT_DIR$/pages/index.html" />
+        <option value="$PROJECT_DIR$/test_images/testsite.html" />
+        <option value="$PROJECT_DIR$/scripts/display.js" />
+        <option value="$PROJECT_DIR$/scripts/displays/display.js" />
+        <option value="$PROJECT_DIR$/scripts/displays/text_post_display_client.js" />
+        <option value="$PROJECT_DIR$/test.js" />
+        <option value="$PROJECT_DIR$/scripts/poster_display_client.js" />
+        <option value="$PROJECT_DIR$/scripts/text_post_display_client.js" />
+        <option value="$PROJECT_DIR$/scripts/photo_post_display_client.js" />
+        <option value="$PROJECT_DIR$/testsite.html" />
+        <option value="$PROJECT_DIR$/scripts/text_display_client.js" />
+        <option value="$PROJECT_DIR$/bot_modules/display.js" />
+        <option value="$PROJECT_DIR$/bot_modules/file_util.js" />
+        <option value="$PROJECT_DIR$/bot_modules/auth.js" />
+        <option value="$PROJECT_DIR$/bot_modules/telegrambots.js" />
+        <option value="$PROJECT_DIR$/main.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-321" />
+    <option name="y" value="-24" />
+    <option name="width" value="1890" />
+    <option name="height" value="960" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="10.11.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/main.js" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\bot_modules" />
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\scripts" />
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\scripts\displays" />
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3" />
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\custom_elements" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\custom_elements" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Node.js.main.js">
+    <configuration default="true" type="NodeJSConfigurationType" path-to-js-file="main.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="main.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="main.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="test.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="test.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Node.js.test.js" />
+      <item itemvalue="Node.js.main.js" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.main.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f4243891-a321-4c2a-8ad4-946c90f9bc7d" name="Default Changelist" comment="" />
+      <created>1544865671446</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1544865671446</updated>
+      <workItem from="1544865675000" duration="9036000" />
+      <workItem from="1544880429926" duration="13149000" />
+      <workItem from="1544929755092" duration="13130000" />
+      <workItem from="1544970509601" duration="4724000" />
+      <workItem from="1545016971565" duration="12195000" />
+      <workItem from="1545058834776" duration="5802000" />
+      <workItem from="1545101567937" duration="23007000" />
+      <workItem from="1545130032541" duration="1740000" />
+      <workItem from="1545144270568" duration="4505000" />
+      <workItem from="1545197550607" duration="1125000" />
+      <workItem from="1545207514165" duration="4411000" />
+      <workItem from="1545217236801" duration="986000" />
+      <workItem from="1545221024818" duration="20789000" />
+      <workItem from="1545293478714" duration="6190000" />
+      <workItem from="1546420745386" duration="6708000" />
+      <workItem from="1546441324116" duration="4178000" />
+      <workItem from="1546481623284" duration="5664000" />
+      <workItem from="1546500567499" duration="11644000" />
+      <workItem from="1546518200887" duration="6633000" />
+      <workItem from="1546532166537" duration="2979000" />
+      <workItem from="1546572963774" duration="1525000" />
+      <workItem from="1546574519521" duration="4024000" />
+      <workItem from="1546586230614" duration="10146000" />
+      <workItem from="1546602963119" duration="2044000" />
+      <workItem from="1546610512678" duration="8714000" />
+      <workItem from="1546664226688" duration="4035000" />
+      <workItem from="1546680766585" duration="4088000" />
+      <workItem from="1546854223207" duration="6014000" />
+      <workItem from="1546862998404" duration="2981000" />
+      <workItem from="1546870356715" duration="8873000" />
+      <workItem from="1546919934134" duration="4005000" />
+      <workItem from="1546930616906" duration="7466000" />
+      <workItem from="1546961806283" duration="11096000" />
+      <workItem from="1547006209393" duration="4782000" />
+      <workItem from="1547103367377" duration="7400000" />
+      <workItem from="1547115656759" duration="5674000" />
+      <workItem from="1547123068005" duration="749000" />
+      <workItem from="1547124071093" duration="1088000" />
+      <workItem from="1547186183124" duration="2204000" />
+      <workItem from="1547195415947" duration="2621000" />
+      <workItem from="1547222374412" duration="2398000" />
+      <workItem from="1547294124014" duration="5823000" />
+      <workItem from="1547430784727" duration="2944000" />
+      <workItem from="1547444384253" duration="3604000" />
+      <workItem from="1547456711180" duration="7227000" />
+      <workItem from="1547525120736" duration="4063000" />
+      <workItem from="1547543054613" duration="6487000" />
+      <workItem from="1547636039311" duration="277000" />
+      <workItem from="1547807993532" duration="9159000" />
+      <workItem from="1547877863755" duration="1461000" />
+      <workItem from="1547885131981" duration="11264000" />
+      <workItem from="1547907473621" duration="9977000" />
+      <workItem from="1547919815702" duration="2917000" />
+      <workItem from="1548053480289" duration="12253000" />
+      <workItem from="1548084867176" duration="8346000" />
+      <workItem from="1548093559064" duration="264000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="346588000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <layout>
+      <window_info id="Structure" order="0" weight="0.24960254" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.7690941" visible="true" weight="0.25119236" />
+      <window_info id="Favorites" order="2" sideWeight="0.23090586" side_tool="true" weight="0.24165341" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.42628774" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.13321492" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39964476" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23847377" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.110124335" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39964476" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/scripts/errors.js" />
+    <entry file="file://$PROJECT_DIR$/scripts/unique_cache.js" />
+    <entry file="file://$PROJECT_DIR$/file_13.jpg" />
+    <entry file="file://$PROJECT_DIR$/texts.js" />
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/meta.js" />
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/photos/file_17.jpg" />
+    <entry file="file://$PROJECT_DIR$/lol/dasd" />
+    <entry file="file://$PROJECT_DIR$/scripts/data_structs.js" />
+    <entry file="file://$PROJECT_DIR$/test.txt" />
+    <entry file="file://$PROJECT_DIR$/logs/photo_posts.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lo.txt" />
+    <entry file="file://$PROJECT_DIR$/testDir/_store/file_18.jpg" />
+    <entry file="file://$PROJECT_DIR$/testDir/_messages.js" />
+    <entry file="file://$PROJECT_DIR$/posts/text_posts.js" />
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_store/file_19.jpg" />
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_messages.js" />
+    <entry file="file://$PROJECT_DIR$/scripts/custom_promisify.js" />
+    <entry file="file://$PROJECT_DIR$/scripts/post_handlers.js" />
+    <entry file="file://$PROJECT_DIR$/telegram_feed/telegram_texts.js" />
+    <entry file="file://$PROJECT_DIR$/pages/telegram_feed.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/custom_elements/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#img-carousel#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/poster_display.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/main_display.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/custom_elements/carousel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/page_listing.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/poster_display_client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="3" column="15" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bot_modules/telebots.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bot_modules/logger.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/text_posts/1547910747.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/text_posts/1547121245.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_22.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_messages/1547911765.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_messages/1547911699.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_messages/1547121277.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testsite.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="36" column="38" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/text_posts/1548069138.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="7" selection-start-column="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/text_posts/1547921918.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_26.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_25.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_24.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_21.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bot_modules/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="17577" column="17" selection-start-line="17577" selection-start-column="17" selection-end-line="17577" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="11" column="94" selection-start-line="11" selection-start-column="94" selection-end-line="11" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bot_modules/telegrambots.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
+          <folding>
+            <element signature="n#!!block;n#onText#0;n#PubsBot#0" />
+            <element signature="n#!!block;n#onCommand#0;n#PubsBot#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bot_modules/display.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/photo_display_client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/text_display_client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bot_modules/file_util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NHTV Main Page</title>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+    </script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        #frame {
+            height: 50vh;
+            width: 100vw;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<iframe id="frame" src="http://en.wikipedia.org"></iframe>
+<button onclick="myFunc()">send something</button>
+</body>
+</html>

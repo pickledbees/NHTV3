@@ -1,0 +1,17 @@
+{
+    "asi":           false,
+    "boss":          false,
+    "curly":         false,
+    "debug":         false,
+    "evil":          false,
+    "es5":           true,
+    "loopfunc":      false,
+    "maxparams":     3,
+    "maxdepth":      2,
+    "maxstatements": 5,
+    "maxcomplexity": 3,
+    "maxlen":        80,
+    "unused":        true,
+    "strict":        false,
+    "white":         true
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>carousel</title>
+    <script src="carousel.js"></script>
+</head>
+<body>
+<img-carousel
+        interval=5000
+        style="height: 500px; width: 250px"
+        src=    "./test_images/3.jpg,
+                ./test_images/4.jpg,
+                ./test_images/5.jpg">
+</img-carousel>
+</body>
+<script type="text/javascript">
+    function run() {
+        const carousel = document.querySelector('.carousel');
+        const items = carousel.children;
+        //console.log(items);
+        let count = 0;
+        setInterval(() => {
+            items[count].classList.toggle('active');
+            items[++count % 3].classList.toggle('active');
+            count %= 3;
+        }, 2000);
+    }
+</script>

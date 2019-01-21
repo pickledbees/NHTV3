@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div>yeah boi</div>
+<button onclick="getImage();">get img</button>
+<img id="img">
+</body>
+<script>
+    const socket = io();
+
+    function display(imgBuf) {
+        const img = document.getElementById('img');
+        img.src = 'data:image/jpeg;base64,' + imgBuf;
+    }
+
+    socket.on('image', display);
+
+    function getImage() {
+        socket.emit('display');
+    }
+</script>
+<script src="/scripts/text_display_client.js"></script>
+<script>
+    console.log('hello');
+    const textDisplay = new TextDisplayClient(1, socket);
+    textDisplay.onPosts = console.log;
+    textDisplay.getPosts(2);
+</script>
+<script src="/scripts/photo_display_client.js"></script>
+<script>
+    console.log("hello2");
+    const photoDisplay = new PhotoDisplayClient(2, socket);
+    photoDisplay.onPosts = console.log;
+    photoDisplay.getPosts(10);
+
+</script>
+</html>

@@ -1,0 +1,1 @@
+{"message_id":3944,"from":{"id":303614082,"is_bot":false,"first_name":"Barky","username":"PickleJar","language_code":"en"},"chat":{"id":-270499497,"title":"Testing2","type":"group","all_members_are_administrators":true},"date":1547920090,"text":"/yeah","entities":[{"offset":0,"length":5,"type":"bot_command"}]}
