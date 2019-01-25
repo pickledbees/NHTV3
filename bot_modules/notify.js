@@ -13,7 +13,7 @@ class Notify extends IDPool{
         const id = message.chat.id;
         const message_id = message.message_id;
         this.members.forEach(member => {
-            this.bot.sendMessage(id, '<b>Notification</b>')
+            this.bot.sendMessage(member, '<b>*Notification*</b>')
                 .then(() => this.bot.forwardMessage(member, id, message_id));
         });
     }

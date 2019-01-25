@@ -3,6 +3,8 @@
 const PubsBot = require('./bot_modules/telegrambots');
 const path = require('path');
 const fs = require('fs');
+const https = require('https');
+const get = require('./bot_modules/get');
 const {File, JSONFile, PhotoManager, MessageManager, Directory} = require('./bot_modules/file_util');
 const {TextDisplay, PhotoDisplay} = require('./bot_modules/display');
 const IDPool = require('./bot_modules/idpool');
@@ -12,9 +14,7 @@ const Notify = require('./bot_modules/notify');
 
 
 //set up bot
-console.log('starting NHTV bot...');
-
-try {
+    console.log('starting NHTV bot...');
 
     const TOKEN = fs.readFileSync('C:\\Users\\Lim Han Quan\\Desktop\\TOKENS\\NHTVPROTO.txt', 'utf8');
     const bot = new PubsBot(TOKEN, {polling: true});
@@ -42,8 +42,10 @@ try {
         '/post - Send a text / photo to the screen\n' +
         '/poster - Send a poster to the screen\n' +
         '/anc - Send an announcement to the screen\n' +
+        //'/news - Get announcements displayed on the PubsBot Screen\n' +
         '/subscribe - Subscribe to PubsBot notifications\n' +
         '/unsubscribe - Unsubscribe to PubsBot notifications\n' +
+        '/cats - wait what?\n' +
         '/feedback - give me some feedback!';
     const privCommandsText = '\n\n' +
         '<b>Privileged Commands:</b>\n' +
@@ -64,11 +66,27 @@ try {
     });
 
 
-//some text replies
+//Some text replies
     bot.setReply('Hello', 'Jello');
     bot.setReply('Mellow', 'Yellow');
     bot.setReply('Hi', 'Bye');
     bot.setReply('What is the answer to life, the universe and everything?', '42');
+
+
+
+//Cat replies
+    bot.onCommand('/cats', message => {
+        const id = message.chat.id;
+        bot.sendMessage(id, 'Fetching a feline friend for you...');
+        get('https://api.thecatapi.com/v1/images/search?size=full\'')
+            .then(data => {
+                const purl = JSON.parse(data)[0].url;
+                bot.sendPhoto(id, purl, {
+                    caption: 'Got one!'
+                });
+            })
+    });
+
 
 
 //Set up Text / Photo post handlers
@@ -221,6 +239,10 @@ try {
         }
     }
 
+    bot.onCommand('/news', message => {
+        //TODO: implement
+    });
+
 
 //Feedback Handler
     const feedbackDirPath = path.join(__dirname, 'posts', 'feedback');
@@ -271,10 +293,6 @@ try {
     });
 
     console.log('NHTV bot started');
-
-} catch (e) {
-    console.log(e);
-}
 
 /*
 //set up server
