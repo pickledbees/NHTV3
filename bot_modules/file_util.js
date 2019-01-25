@@ -69,7 +69,11 @@ class Directory {
 
     //synchronous version of unlink()
     unlinkSync(fileName) {
-        return fs.unlink(path.join(this.location, fileName));
+        return fs.unlinkSync(path.join(this.location, fileName));
+    }
+
+    existsSync(fileName) {
+        return fs.existsSync(path.join(this.location, fileName));
     }
 
     //deletes all items in the directory
@@ -104,7 +108,7 @@ class MessageManager {
         return this._dir.isEmpty;
     }
 
-    //stores the message adn returns a censored version of the message
+    //stores the message and returns a censored version of the message
     async store(message) {
         const {...toStore} = message;
         toStore.text = swearjar.censor(message.text);
@@ -135,7 +139,7 @@ class MessageManager {
         return Promise.all(promises);
     }
 
-    //deletes all stored messages
+    //deletes stored messages, if number supplied, that number of messages is deleted (from earliest)
     empty(number) {
         if (number) {
             const dir = this._dir;
