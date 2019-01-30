@@ -30,19 +30,21 @@
         socket.emit('display');
     }
 </script>
-<script src="/scripts/text_display_client.js"></script>
+<script src="/static/scripts/display_client.js"></script>
 <script>
     console.log('hello');
     const textDisplay = new TextDisplayClient(1, socket);
-    textDisplay.onPosts = console.log;
-    textDisplay.getPosts(2);
-</script>
-<script src="/scripts/photo_display_client.js"></script>
-<script>
+    textDisplay.onTexts = console.log;
+    textDisplay.getTexts(2);
+
     console.log("hello2");
     const photoDisplay = new PhotoDisplayClient(2, socket);
-    photoDisplay.onPosts = console.log;
-    photoDisplay.getPosts(10);
+    photoDisplay.onPhotos = console.log;
+    photoDisplay.getPhotos(2);
 
+    console.log('hello3');
+    const pagesDisplay= new PagesDisplayClient(4, socket);
+    pagesDisplay.onPages = console.log;
+    pagesDisplay.getPages();
 </script>
 </html>

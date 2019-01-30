@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NHTV Main Page</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: black;
+            overflow: hidden;
+            font-family: helvetica;
+        }
+        #frame {
+            height: 90vh;
+            width: 100vw;
+            border: none;
+        }
+        #footer {
+            box-sizing: border-box;
+            color: white;
+            background-color: #262626;
+            height: 10vh;
+            width: 100vw;
+            padding: 5px;
+            line-height: 5vh;
+            vertical-align: middle;
+        }
+        #footer img {
+            border-radius: 1vh;
+            height: 8vh;
+            float: left;
+        }
+        #footer p {
+            margin: 10px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<iframe id="frame"></iframe>
+<div id="footer">
+    <img src="/images/standard/feedback_qr.png">
+    <p>For suggestions and feedback, please scan the QR code</p>
+</div>
+</body>
+<script src="/scripts/display_client.js"></script>
+<script src="/scripts/cycler.js"></script>
+<script>
+    const socket = io();
+
+    const frame = document.getElementById('frame');
+    const cycler = new PagesCycler(frame);
+    const client = new PagesDisplayClient(5, socket);
+
+    client.onPages = (pages) => {
+        cycler.pages = pages;
+        cycler.cycle();
+    };
+    client.getPages();
+</script>
+</html>

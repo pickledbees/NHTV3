@@ -5,13 +5,11 @@ const fs = require('fs');
 
 class Logger {
 
-    constructor(file = `logfile${new Date().getTime()}.txt`) {
-        this.file = file;
-        try {
-            fs.appendFileSync(file, 'LOG STARTED ' + new Date() + newline);
-        } catch (e) {
-            console.log(`Could not make log file with name ${file}`);
-            throw e;
+    constructor(location) {
+        if (fs.existsSync(location)) {
+            this.file = location;
+        } else {
+            throw new Error('location ' + location + ' does not exist!');
         }
     }
 

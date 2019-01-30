@@ -6,7 +6,7 @@ const fs = require('fs');
 const https = require('https');
 const get = require('./bot_modules/get');
 const {File, JSONFile, PhotoManager, MessageManager, Directory} = require('./bot_modules/file_util');
-const {TextDisplay, PhotoDisplay} = require('./bot_modules/display');
+const {TextDisplay, PhotoDisplay, PagesDisplay} = require('./bot_modules/display');
 const IDPool = require('./bot_modules/idpool');
 const Vetter = require('./bot_modules/vetter');
 const Notify = require('./bot_modules/notify');
@@ -14,13 +14,16 @@ const Notify = require('./bot_modules/notify');
 
 
 //set up bot
+function run() {
     console.log('starting NHTV bot...');
 
     const TOKEN = fs.readFileSync('C:\\Users\\Lim Han Quan\\Desktop\\TOKENS\\NHTVPROTO.txt', 'utf8');
     const bot = new PubsBot(TOKEN, {polling: true});
 
+    bot.onText('/ok', console.log);
 
-//Set up Admin Pool
+
+//Set up Admin Pool(
     const adminPoolDirPath = path.join(__dirname, 'info', 'admins');
     const adminPool = new IDPool(adminPoolDirPath);
 
@@ -51,9 +54,11 @@ const Notify = require('./bot_modules/notify');
         '<b>Privileged Commands:</b>\n' +
         '/vetp - Become a poster vetter\n' +
         '/xvetp - Stop being a poster vetter\n' +
-        '/veta - Become a announcement vetter\n' +
-        '/xveta - Stop being a poster vetter\n' +
-        '/send - Send a message to all subscribers';
+        '/veta - Become an announcement vetter\n' +
+        '/xveta - Stop being an announcement vetter\n' +
+        '/send - Send a message to all subscribers\n' +
+        '\n' +
+        '/reset - Reset the bot to a clean configuration';
 
 
 //Start handler
@@ -73,7 +78,6 @@ const Notify = require('./bot_modules/notify');
     bot.setReply('What is the answer to life, the universe and everything?', '42');
 
 
-
 //Cat replies
     bot.onCommand('/cats', message => {
         const id = message.chat.id;
@@ -82,11 +86,18 @@ const Notify = require('./bot_modules/notify');
             .then(data => {
                 const purl = JSON.parse(data)[0].url;
                 bot.sendPhoto(id, purl, {
-                    caption: 'Got one!'
+                    caption: (() => {
+                        let num = Math.floor(Math.random() * 20);
+                        const meows = [];
+                        while (num--)
+                            meows.push(Math.random() > 0.4 ? 'meow' : 'Meow');
+                        return meows;
+                    })().join(' ')
                 });
             })
+    }, {
+        group: true
     });
-
 
 
 //Set up Text / Photo post handlers
@@ -142,7 +153,9 @@ const Notify = require('./bot_modules/notify');
         if (!adminPool.isInPool(id)) return;
         posterVetter.addToPool(id);
         bot.sendMessage(id, '<b>You may now receive posters submitted for vetting</b>\n' +
-            'use the command /xvetp anytime to stop receiving poster submissions');
+            'Use the command /xvetp anytime to stop receiving poster submissions');
+    }, {
+        group: true
     });
 
     bot.onCommand('/xvetp', message => {
@@ -150,6 +163,8 @@ const Notify = require('./bot_modules/notify');
         if (!adminPool.isInPool(id)) return;
         posterVetter.removeFromPool(id);
         bot.sendMessage(id, '<b>You have now no longer a poster vetter</b>');
+    }, {
+        group: true
     });
 
 
@@ -197,7 +212,9 @@ const Notify = require('./bot_modules/notify');
         if (!adminPool.isInPool(id)) return;
         ancVetter.addToPool(id);
         bot.sendMessage(id, '<b>You may now receive announcements submitted for vetting</b>\n' +
-            'use the command /xveta anytime to stop receiving poster submissions');
+            'Use the command /xveta anytime to stop receiving poster submissions');
+    }, {
+        group: true
     });
 
     bot.onCommand('/xveta', message => {
@@ -205,6 +222,8 @@ const Notify = require('./bot_modules/notify');
         if (!adminPool.isInPool(id)) return;
         ancVetter.removeFromPool(id);
         bot.sendMessage(id, '<b>You are now no longer an announcement vetter</b>');
+    }, {
+        group: true
     });
 
 
@@ -225,6 +244,7 @@ const Notify = require('./bot_modules/notify');
 
     const ancDirPath = path.join(__dirname, 'posts', 'announcements');
     const ancManager = new MessageManager(ancDirPath);
+    const ancDisplay = new TextDisplay(4, ancManager);
 
     async function handleAnc(message) {
         const id = message.chat.id;
@@ -233,6 +253,7 @@ const Notify = require('./bot_modules/notify');
         const approved = await ancVetter.vet(message);
         if (approved) {
             await ancManager.store(message);
+            ancDisplay.display(message);
             bot.replyToMessage(id, message_id, '<b>Announcement has been approved and uploaded!</b>');
         } else {
             bot.replyToMessage(id, message_id, '<b>Sorry, your announcement has been rejected.</b>')
@@ -272,12 +293,16 @@ const Notify = require('./bot_modules/notify');
         const id = message.chat.id;
         notifier.addToPool(id);
         bot.sendMessage(id, '<b>This chat is now subscribed to PubsBot Notifications!</b>');
+    }, {
+        group: true
     });
 
     bot.onCommand('/unsubscribe', message => {
         const id = message.chat.id;
         notifier.removeFromPool(id);
         bot.sendMessage(id, '<b>This chat is now unsubscribed to PubsBot Notifications</b>')
+    }, {
+        group: true
     });
 
     bot.onCommand('/send', message => {
@@ -292,36 +317,103 @@ const Notify = require('./bot_modules/notify');
         r.cancel(120000);
     });
 
+
+//Reset Command Handler
+    bot.onCommand('/reset', async message => {
+        const id = message.chat.id;
+        if (!adminPool.isInPool(id)) return;
+        const r = bot.createRequest();
+        r.onResponse = message => {
+            if (message.text === '0000') {
+                textPostManager.empty();
+                photoPostManager.flush();
+                posterPostManager.flush();
+                ancManager.empty();
+                adminPool.clearPool();
+                posterVetter.clearPool();
+                ancVetter.clearPool();
+                bot.sendMessage(id, '<b>Bot has been reset</b>');
+            } else {
+                bot.sendMessage('<b>Sorry, invalid code</b>');
+            }
+        };
+        r.onCancel = message => {
+            bot.sendMessage(id, '<b>Reset Cancelled</b>');
+        }
+        r.send(id, '<b>WARNING: You are resetting PubsBot</b>\n' +
+            'Resetting the bot flushes all existing files and data submitted to the bot since its last reset,\n' +
+            'including all admin or any rights granted for ALL users. However, its functionality will remain unchanged. ' +
+            'All admin rights can be restored with the correct command.\n\n' +
+            '<b>Send me the reset code to proceed with the reset:</b>');
+    });
+
     console.log('NHTV bot started');
 
-/*
-//set up server
-console.log('starting NHTV server...');
-const express = require('express');
-const app = express();
-const svr = require('http').createServer(app);
-const io = require('socket.io')(svr);
 
-app.get('/main', (request, response) => {
-    const index = path.join(__dirname, 'pages', 'index.html');
-    response.sendFile(index);
-});
+//Set up Pages Display
+    const pageListing = new JSONFile(path.join(__dirname, 'static', 'pages', 'page_listing.js'));
+    const mainWindowDisplay = new PagesDisplay(5, pageListing);
 
-app.use('/scripts', express.static('scripts'));
-app.use('/images', express.static('images'));
+//Server Set Up
+    console.log('Starting NHTV Server...');
+    const express = require('express');
+    const app = express();
 
-app.get('/test1', (request, response) => {
-    response.sendFile(path.join(__dirname, 'testsite.html'));
-});
+//Set up static file requests
+    const statics = pather(__dirname, 'static');
+    app.use('/pages', express.static(statics('pages')()));
+    app.use('/scripts', express.static(statics('scripts')()));
+    app.use('/images', express.static(statics('images')()));
+    app.use('/styles', express.static(statics('styles')()));
 
-io.on('connection', socket => {
-    console.log('display client connected');
-    textPostDisplay.subscribe(socket);
-    socket.on('disconnect', () => textPostDisplay.unsubscribe(socket));
-    photoPostDisplay.subscribe(socket);
-    socket.on('disconnect', () => photoPostDisplay.unsubscribe(socket));
-});
+//Socket Set Up
+    const svr = require('http').createServer(app);
+    const io = require('socket.io')(svr);
 
-svr.listen(3000);
-console.log('NHTV server started');
-*/
+//Display subscriptions
+    io.on('connection', socket => {
+        console.log('client connected');
+
+        textPostDisplay.subscribe(socket);
+        photoPostDisplay.subscribe(socket);
+        posterPostDisplay.subscribe(socket);
+        ancDisplay.subscribe(socket);
+        mainWindowDisplay.subscribe(socket);
+        socket.on('disconnect', () => {
+            textPostDisplay.unsubscribe(socket);
+            photoPostDisplay.unsubscribe(socket);
+            posterPostDisplay.unsubscribe(socket);
+            ancDisplay.subscribe(socket);
+            mainWindowDisplay.unsubscribe(socket);
+        });
+    });
+
+
+//Listen on Port
+    svr.listen(3000);
+    console.log('NHTV server started');
+}
+
+
+//Main Run
+    const Logger = require('./bot_modules/logger');
+    const mainLog = new Logger(path.join(__dirname, 'logs', 'error_logs.js'));
+    try {
+        run();
+    } catch (e) {
+        mainLog.log(e.message, true);
+        run();
+    }
+
+//Utility definitions
+
+//Constructs path - uses currying
+    function pather(...args) {
+        if (args.length === 0) return;
+        const joined = path.join(...args);
+        return (..._args) => {
+            if (_args.length === 0)
+                return joined;
+            return pather(joined, ..._args);
+        }
+    }

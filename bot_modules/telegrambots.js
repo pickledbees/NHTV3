@@ -27,6 +27,8 @@ class _Request {
     send(id, text) {
         const bot = this._bot;
 
+        this.cancel(); //cancels current request (if any);
+
         this._listener = message => {
             if (message.chat.id === id) {
                 this.cancel();
@@ -102,8 +104,14 @@ class PubsBot extends TelegramBot {
     }
 
     //alias for onText
-    onCommand(command, callback, privileged = false) {
-        this.onText(command, callback);
+    onCommand(command, callback, scope = {}) {
+        const p = scope.private === undefined ? true : scope.private;
+        const g = scope.group === undefined ? false : scope.group;
+        this.onText(command, message => {
+            const type = message.chat.type;
+            if ((p && type === 'private') || (g && type === 'group'))
+                callback(message);
+        });
     }
 
     //reply handler

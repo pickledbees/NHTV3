@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Count</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        div {
+            text-align: center;
+            line-height: 100vh;
+            height: 100vh;
+            width: 100vw;
+            font-size: 200px;
+            font-weight: bold;
+            font-family: helvetica;
+            color: white;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="count">0</div>
+</body>
+<script>
+    let i = 1;
+    const el = document.getElementById('count');
+    setInterval(() => {
+        el.innerText = i++;
+    }, 1000);
+</script>
+</html>

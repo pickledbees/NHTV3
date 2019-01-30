@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+        #main_window {
+            border: none;
+            height: 100vh;
+            width: 100vw;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+
+<iframe id='main_window'></iframe>
+
+</body>
+<script type="text/javascript">
+    class Rotator {
+        constructor(frame, pages) {
+            this._pages = pages;
+            this._frame = frame;
+            const that = this;
+            this._counter = (function* () {
+                let i = 0;
+                let reset;
+                while (true) {
+                    if (reset) i = 0;
+                    const len = that._pages.length;
+                    if (len !== 0) {
+                        reset = yield i % that._pages.length;
+                        i = (i + 1) % that._pages.length;
+                    } else {
+                        yield i;
+                    }
+                }
+            })();
+        }
+
+        rotate(reset) {
+            clearTimeout(this._tid);
+            const index = this._counter.next(reset).value;
+            const {src, delay} = this._pages[index];
+            this._frame.src = src;
+            this._tid = setTimeout(() => this.rotate(), delay);
+        }
+
+        stop() {
+            clearTimeout(this._tid);
+        }
+
+        restart() {
+            this.rotate(true);
+        }
+
+        setPages(pages) {
+            this._pages = pages;
+        }
+
+        getPages() {
+            return this._pages;
+        }
+    }
+
+    const frame = document.getElementById('main_window');
+    const r = new Rotator(frame, []);
+
+    function updatePages(pages) {
+        r.setPages(pages);
+        r.rotate();
+    }
+
+    const socket = io();
+    socket.on('new_pages', updatePages);
+    socket.emit('get_pages');
+</script>
+</html>

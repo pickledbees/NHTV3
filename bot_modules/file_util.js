@@ -225,6 +225,12 @@ class PhotoManager {
         return this._m.isEmpty;
     }
 
+    //flushes the entire manager, removing all stored content, including images
+    flush() {
+        this._m.empty();
+        this._p.empty();
+    }
+
     get size() {
         return this._m.size;
     }

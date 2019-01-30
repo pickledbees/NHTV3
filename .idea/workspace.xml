@@ -2,8 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4243891-a321-4c2a-8ad4-946c90f9bc7d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/bot_modules/notify.js" beforeDir="false" afterPath="$PROJECT_DIR$/bot_modules/notify.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/standard/feedback_qr.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/pages/calendar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/pages/count.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/pages/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/pages/page_listing.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/pages/rotator.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/pages/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/scripts/cycler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/scripts/display_client.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/styles/main_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot_modules/display.js" beforeDir="false" afterPath="$PROJECT_DIR$/bot_modules/display.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot_modules/file_util.js" beforeDir="false" afterPath="$PROJECT_DIR$/bot_modules/file_util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot_modules/logger.js" beforeDir="false" afterPath="$PROJECT_DIR$/bot_modules/logger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot_modules/telegrambots.js" beforeDir="false" afterPath="$PROJECT_DIR$/bot_modules/telegrambots.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/photo_posts.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/text_posts.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/main_display.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/page_listing.js" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error_logs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/poster_display.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/pages/poster_display.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/telegram_feed.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/pages/telegram_feed.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/photo_display_client.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/poster_display_client.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/text_display_client.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testsite.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/pages/testsite.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,54 +41,40 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FavoritesManager">
-    <favorites_list name="NHTV3" />
+    <favorites_list name="NHTV3">
+      <favorite_root url="file://$PROJECT_DIR$/pages/count.html" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+    </favorites_list>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="84" column="39" lean-forward="true" selection-start-line="84" selection-start-column="39" selection-end-line="84" selection-end-column="39" />
-              <folding>
-                <element signature="e#9309#10220#0" />
-              </folding>
+            <state relative-caret-position="208">
+              <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bot_modules/get.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="6" column="28" lean-forward="true" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bot_modules/notify.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bot_modules/vetter.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/logs/error_logs.js">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bot_modules/idpool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+            <state relative-caret-position="117">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/pages/calendar.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -70,17 +82,53 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bot_modules/telegrambots.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="101" column="5" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
+            <state relative-caret-position="7">
+              <caret line="94" column="5" lean-forward="true" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bot_modules/file_util.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="143">
+              <caret line="136" column="31" lean-forward="true" selection-start-line="136" selection-start-column="31" selection-end-line="136" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bot_modules/file_util.js">
+        <entry file="file://$PROJECT_DIR$/static/pages/page_listing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="167" column="25" selection-start-line="167" selection-start-column="25" selection-end-line="167" selection-end-column="25" />
+            <state>
+              <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bot_modules/display.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="80" column="35" lean-forward="true" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/scripts/display_client.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="611">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/scripts/cycler.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="585">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
             </state>
           </provider>
         </entry>
@@ -90,7 +138,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -110,6 +160,7 @@
       <find>TextPostDisplay</find>
       <find>_listener</find>
       <find>Idpool</find>
+      <find>fs</find>
     </findStrings>
     <replaceStrings>
       <replace>textHandler</replace>
@@ -125,6 +176,7 @@
       <replace>PhotoDisplay</replace>
       <replace>_callback</replace>
       <replace>IDPool</replace>
+      <replace>cycle</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -133,24 +185,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/custom_modules/telebots.js" />
-        <option value="$PROJECT_DIR$/custom_modules/Telebot.js" />
-        <option value="$PROJECT_DIR$/custom_modules/logger.js" />
-        <option value="$PROJECT_DIR$/custom_modules/telebot.js" />
-        <option value="$PROJECT_DIR$/scripts/displayer.js" />
-        <option value="$PROJECT_DIR$/scripts/photo_post_handler.js" />
-        <option value="$PROJECT_DIR$/scripts/telebot.js" />
-        <option value="$PROJECT_DIR$/scripts/text_post_handler.js" />
-        <option value="$PROJECT_DIR$/scripts/posthandlers.js" />
-        <option value="$PROJECT_DIR$/scripts/post_handlers.js" />
-        <option value="$PROJECT_DIR$/scripts/errors.js" />
-        <option value="$PROJECT_DIR$/scripts/logger.js" />
-        <option value="$PROJECT_DIR$/scripts/pubsbot.js" />
-        <option value="$PROJECT_DIR$/scripts/telebots.js" />
-        <option value="$PROJECT_DIR$/texts.js" />
-        <option value="$PROJECT_DIR$/scripts/data_structs.js" />
-        <option value="$PROJECT_DIR$/scripts/telegrambots.js" />
-        <option value="$PROJECT_DIR$/scripts/handler.js" />
         <option value="$PROJECT_DIR$/scripts/bot_file_util.js" />
         <option value="$PROJECT_DIR$/scripts/file_util.js" />
         <option value="$PROJECT_DIR$/scripts/carousel.js" />
@@ -160,9 +194,6 @@
         <option value="$PROJECT_DIR$/custom_elements/test.html" />
         <option value="$PROJECT_DIR$/custom_elements/carousel.js" />
         <option value="$PROJECT_DIR$/pages/telegram_feed.html" />
-        <option value="$PROJECT_DIR$/pages/page_listing.js" />
-        <option value="$PROJECT_DIR$/pages/main_display.html" />
-        <option value="$PROJECT_DIR$/pages/index.html" />
         <option value="$PROJECT_DIR$/test_images/testsite.html" />
         <option value="$PROJECT_DIR$/scripts/display.js" />
         <option value="$PROJECT_DIR$/scripts/displays/display.js" />
@@ -171,19 +202,40 @@
         <option value="$PROJECT_DIR$/scripts/poster_display_client.js" />
         <option value="$PROJECT_DIR$/scripts/text_post_display_client.js" />
         <option value="$PROJECT_DIR$/scripts/photo_post_display_client.js" />
-        <option value="$PROJECT_DIR$/testsite.html" />
         <option value="$PROJECT_DIR$/scripts/text_display_client.js" />
-        <option value="$PROJECT_DIR$/bot_modules/display.js" />
         <option value="$PROJECT_DIR$/bot_modules/auth.js" />
         <option value="$PROJECT_DIR$/bot_modules/pool.js" />
-        <option value="$PROJECT_DIR$/bot_modules/telegrambots.js" />
         <option value="$PROJECT_DIR$/bot_modules/admin.js" />
         <option value="$PROJECT_DIR$/bot_modules/vetter.js" />
         <option value="$PROJECT_DIR$/bot_modules/idpool.js" />
-        <option value="$PROJECT_DIR$/bot_modules/file_util.js" />
         <option value="$PROJECT_DIR$/bot_modules/notify.js" />
         <option value="$PROJECT_DIR$/bot_modules/get.js" />
+        <option value="$PROJECT_DIR$/pages/pages.js" />
+        <option value="$PROJECT_DIR$/pages/2.html" />
+        <option value="$PROJECT_DIR$/pages/1.html" />
+        <option value="$PROJECT_DIR$/pages/page_listing.js" />
+        <option value="$PROJECT_DIR$/pages/count.html" />
+        <option value="$PROJECT_DIR$/pages/main_display.html" />
+        <option value="$PROJECT_DIR$/scripts/pages_display_client.js" />
+        <option value="$PROJECT_DIR$/pages/rotator.html" />
+        <option value="$PROJECT_DIR$/testsite.html" />
+        <option value="$PROJECT_DIR$/pages/testsite.html" />
+        <option value="$PROJECT_DIR$/pages/test.html" />
+        <option value="$PROJECT_DIR$/scripts/rotator.js" />
+        <option value="$PROJECT_DIR$/scripts/display_client.js" />
+        <option value="$PROJECT_DIR$/scripts/cycler.js" />
+        <option value="$PROJECT_DIR$/pages/calendar.html" />
+        <option value="$PROJECT_DIR$/pages/index.html" />
+        <option value="$PROJECT_DIR$/static/pages/test.html" />
+        <option value="$PROJECT_DIR$/static/styles/main_style.css" />
+        <option value="$PROJECT_DIR$/static/pages/page_listing.js" />
+        <option value="$PROJECT_DIR$/bot_modules/telegrambots.js" />
+        <option value="$PROJECT_DIR$/static/pages/index.html" />
+        <option value="$PROJECT_DIR$/static/pages/calendar.html" />
+        <option value="$PROJECT_DIR$/bot_modules/file_util.js" />
+        <option value="$PROJECT_DIR$/bot_modules/logger.js" />
         <option value="$PROJECT_DIR$/main.js" />
+        <option value="$PROJECT_DIR$/bot_modules/display.js" />
       </list>
     </option>
   </component>
@@ -194,8 +246,8 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-321" />
-    <option name="y" value="-24" />
+    <option name="x" value="-99" />
+    <option name="y" value="-42" />
     <option name="width" value="1890" />
     <option name="height" value="960" />
   </component>
@@ -212,16 +264,6 @@
               <item name="NHTV3" type="b2602c69:ProjectViewProjectNode" />
               <item name="NHTV3" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="NHTV3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NHTV3" type="462c0819:PsiDirectoryNode" />
-              <item name="bot_modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NHTV3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NHTV3" type="462c0819:PsiDirectoryNode" />
-              <item name="posts" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -234,6 +276,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.11.0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/main.js" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -243,14 +286,16 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\images" />
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\pages" />
       <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\custom_elements" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\static" />
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\images\standard" />
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\pages" />
       <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\bot_modules" />
       <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\scripts" />
-      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\scripts\displays" />
-      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3" />
-      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\custom_elements" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -361,22 +406,35 @@
       <workItem from="1548347983995" duration="746000" />
       <workItem from="1548384326100" duration="8105000" />
       <workItem from="1548412129333" duration="2693000" />
-      <workItem from="1548416659289" duration="18806000" />
+      <workItem from="1548416659289" duration="19136000" />
+      <workItem from="1548516221766" duration="2800000" />
+      <workItem from="1548583763902" duration="850000" />
+      <workItem from="1548655692126" duration="8879000" />
+      <workItem from="1548678900886" duration="5252000" />
+      <workItem from="1548725177475" duration="8357000" />
+      <workItem from="1548742869986" duration="128000" />
+      <workItem from="1548748785541" duration="3337000" />
+      <workItem from="1548752941130" duration="4968000" />
+      <workItem from="1548758870990" duration="2810000" />
+      <workItem from="1548764688352" duration="14261000" />
+      <workItem from="1548811130556" duration="2891000" />
+      <workItem from="1548816190245" duration="2517000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="403449000" />
+    <option name="totallyTimeSpent" value="460829000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" weight="0.24960254" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.7690941" visible="true" weight="0.2209857" />
-      <window_info id="Favorites" order="2" sideWeight="0.23090586" side_tool="true" weight="0.24165341" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.7669492" visible="true" weight="0.15898252" />
+      <window_info id="Favorites" order="2" sideWeight="0.23305085" side_tool="true" weight="0.14149444" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.42628774" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.43339255" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.13676731" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39964476" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -399,24 +457,101 @@
     </ignored-roots>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/data_structs.js" />
-    <entry file="file://$PROJECT_DIR$/test.txt" />
-    <entry file="file://$PROJECT_DIR$/logs/photo_posts.txt">
+    <entry file="file://$PROJECT_DIR$/bot_modules/telebots.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/text_posts/1547910747.js" />
+    <entry file="file://$PROJECT_DIR$/posts/text_posts/1547121245.js" />
+    <entry file="file://$PROJECT_DIR$/test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_22.jpg" />
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_messages/1547911765.js" />
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_messages/1547911699.js" />
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_messages/1547121277.js" />
+    <entry file="file://$PROJECT_DIR$/posts/text_posts/1548069138.js" />
+    <entry file="file://$PROJECT_DIR$/posts/text_posts/1547921918.js" />
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_26.jpg" />
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_25.jpg" />
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_24.jpg" />
+    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_21.jpg" />
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="17577" column="17" selection-start-line="17577" selection-start-column="17" selection-end-line="17577" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/posts/text_posts/1548093794.js" />
+    <entry file="file://$PROJECT_DIR$/info/poster_vetters/303614082.txt" />
+    <entry file="file://$PROJECT_DIR$/info/poster_vetters/303614082" />
+    <entry file="file://$PROJECT_DIR$/bot_modules/admin.js" />
+    <entry file="file://$PROJECT_DIR$/bot_modules/notify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bot_modules/get.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/pages.js" />
+    <entry file="file://$PROJECT_DIR$/posts/text_posts/1548663164.js" />
+    <entry file="file://$PROJECT_DIR$/pages/2.html" />
+    <entry file="file://$PROJECT_DIR$/pages/1.html" />
+    <entry file="file://$PROJECT_DIR$/posts/text_posts/1548663238.js" />
+    <entry file="file://$PROJECT_DIR$/static/pages/poster_display.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/lo.txt" />
-    <entry file="file://$PROJECT_DIR$/testDir/_store/file_18.jpg" />
-    <entry file="file://$PROJECT_DIR$/testDir/_messages.js" />
-    <entry file="file://$PROJECT_DIR$/posts/text_posts.js" />
-    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_store/file_19.jpg" />
-    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_messages.js" />
-    <entry file="file://$PROJECT_DIR$/scripts/custom_promisify.js" />
-    <entry file="file://$PROJECT_DIR$/scripts/post_handlers.js" />
-    <entry file="file://$PROJECT_DIR$/telegram_feed/telegram_texts.js" />
-    <entry file="file://$PROJECT_DIR$/pages/telegram_feed.html">
+    <entry file="file://$PROJECT_DIR$/scripts/photo_display_client.js" />
+    <entry file="file://$PROJECT_DIR$/scripts/text_display_client.js" />
+    <entry file="file://$PROJECT_DIR$/scripts/poster_display_client.js" />
+    <entry file="file://$PROJECT_DIR$/scripts/pages_display_client.js" />
+    <entry file="file://$PROJECT_DIR$/static/pages/count.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="5" selection-start-column="5" selection-end-column="5" />
+        <state relative-caret-position="260">
+          <caret line="20" column="38" lean-forward="true" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="307" column="31" lean-forward="true" selection-start-line="307" selection-start-column="31" selection-end-line="307" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/pages/rotator.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="56" column="16" lean-forward="true" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/pages/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/pages/testsite.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="45" column="34" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -430,197 +565,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/poster_display.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/main_display.html">
+    <entry file="file://$PROJECT_DIR$/static/styles/main_style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="26">
+          <caret line="2" column="14" lean-forward="true" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/custom_elements/carousel.js">
+    <entry file="file://$PROJECT_DIR$/static/pages/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/page_listing.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/poster_display_client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="3" column="15" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bot_modules/telebots.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bot_modules/logger.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/posts/text_posts/1547910747.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/posts/text_posts/1547121245.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_22.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_messages/1547911765.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_messages/1547911699.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_messages/1547121277.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testsite.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="36" column="38" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/posts/text_posts/1548069138.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/posts/text_posts/1547921918.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_26.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_25.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_24.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_21.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="17577" column="17" selection-start-line="17577" selection-start-column="17" selection-end-line="17577" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/posts/text_posts/1548093794.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/info/poster_vetters/303614082.txt" />
-    <entry file="file://$PROJECT_DIR$/info/poster_vetters/303614082" />
-    <entry file="file://$PROJECT_DIR$/scripts/text_display_client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/photo_display_client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bot_modules/display.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="13" column="39" lean-forward="true" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bot_modules/admin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bot_modules/telegrambots.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="101" column="5" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
+        <state relative-caret-position="663">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bot_modules/vetter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="650">
+          <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/pages/page_listing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/scripts/display_client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="611">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/scripts/cycler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bot_modules/logger.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/error_logs.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/pages/calendar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bot_modules/idpool.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bot_modules/file_util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="167" column="25" selection-start-line="167" selection-start-column="25" selection-end-line="167" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bot_modules/notify.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bot_modules/get.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="6" column="28" lean-forward="true" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+        <state relative-caret-position="117">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="84" column="39" lean-forward="true" selection-start-line="84" selection-start-column="39" selection-end-line="84" selection-end-column="39" />
-          <folding>
-            <element signature="e#9309#10220#0" />
-          </folding>
+        <state relative-caret-position="208">
+          <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bot_modules/display.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="80" column="35" lean-forward="true" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bot_modules/telegrambots.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7">
+          <caret line="94" column="5" lean-forward="true" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bot_modules/file_util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="136" column="31" lean-forward="true" selection-start-line="136" selection-start-column="31" selection-end-line="136" selection-end-column="31" />
         </state>
       </provider>
     </entry>
