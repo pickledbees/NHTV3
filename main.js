@@ -1,5 +1,7 @@
 'use strict';
 
+//Online Version
+
 const PubsBot = require('./bot_modules/telegrambots');
 const path = require('path');
 const fs = require('fs');
