@@ -12,7 +12,7 @@ class Vetter extends IDPool {
 
     //allocates a random vetter in the pool to vet the message
     //returns a promise that resolves to true / false on verdict
-    //if there are no vetters in the pool, a promise resolved to true is returned
+    //if there are no vetters in the pool, a promise resolved to false is returned
     async vet(message) {
         const vArr = await this.getMembers();
         try {

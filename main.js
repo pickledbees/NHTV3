@@ -22,8 +22,6 @@ function run() {
     const TOKEN = fs.readFileSync('C:\\Users\\Lim Han Quan\\Desktop\\TOKENS\\NHTVPROTO.txt', 'utf8');
     const bot = new PubsBot(TOKEN, {polling: true});
 
-    bot.onText('/ok', console.log);
-
 
 //Set up Admin Pool(
     const adminPoolDirPath = path.join(__dirname, 'info', 'admins');
@@ -337,6 +335,7 @@ function run() {
                 adminPool.clearPool();
                 posterVetter.clearPool();
                 ancVetter.clearPool();
+                notifier.clearPool();
                 bot.sendMessage(id, '<b>Bot has been reset</b>');
             } else {
                 bot.sendMessage('<b>Sorry, invalid code</b>');
@@ -350,6 +349,7 @@ function run() {
             'including all admin or any rights granted for ALL users. However, its functionality will remain unchanged. ' +
             'All admin rights can be restored with the correct command.\n\n' +
             '<b>Send me the reset code to proceed with the reset:</b>');
+        r.cancel(120000);
     });
 
     console.log('NHTV bot started');
