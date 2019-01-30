@@ -26,12 +26,12 @@ class Directory {
 
     //returns number of items in directory
     get size() {
-        return this.readdirSync().length;
+        return fs.readdirSync(this.location).length;
     }
 
     //returns true if there is nothing in the directory, false otherwise
     get isEmpty() {
-        return (this.readdirSync().length === 0);
+        return (this.size === 0);
     }
 
     //returns the names of items inside directory, absolute set to true to obtain full paths
@@ -43,23 +43,9 @@ class Directory {
         return items;
     }
 
-    //synchronous version of readdir()
-    readdirSync(absolute = false) {
-        const dir = this;
-        let items = fs.readdirSync(dir.location);
-        if (absolute)
-            return items.map(file => path.join(dir.location, file));
-        return items;
-    }
-
     //writes a new file into the directory
     async writeFile(fileName, data, options) {
         return util.promisify(fs.writeFile)(path.join(this.location, fileName), data, options);
-    }
-
-    //synchronous version of writeFile()
-    writeFileSync(fileName, data, options) {
-        return fs.writeFileSync(path.join(this.location, fileName), data, options);
     }
 
     //deletes a file in the directory
@@ -67,20 +53,20 @@ class Directory {
         return util.promisify(fs.unlink)(path.join(this.location, fileName));
     }
 
-    //synchronous version of unlink()
-    unlinkSync(fileName) {
-        return fs.unlinkSync(path.join(this.location, fileName));
-    }
-
-    existsSync(fileName) {
+    async exists(fileName) {
         return fs.existsSync(path.join(this.location, fileName));
     }
 
     //deletes all items in the directory
-    empty() {
-        const files = this.readdirSync(true);
-        for (let file of files)
-            fs.unlinkSync(file);
+    async empty(number) {
+        const files = await this.readdir(true);
+        if (number === undefined) {
+            for (let file of files)
+                fs.unlinkSync(file);
+        } else {
+            for (let file of files.slice(number))
+                fs.unlinkSync(file);
+        }
     }
 }
 
@@ -116,19 +102,8 @@ class MessageManager {
         return toStore;
     }
 
-    //returns an array of messages stored, arranged in chronological order
-    getMessages(number) {
-        const dir = this._dir;
-        const files = dir.readdirSync();
-        const wanted = number ? files.slice(-number) : files;
-        return wanted.map(fileName =>
-            JSON.parse(
-                fs.readFileSync(
-                    path.join(dir.location, fileName))));
-    }
-
-    //async version of getMessages()
-    async getMessagesAsync(number) {
+    //returns an Promise resolved to array of messages stored, arranged in chronological order
+    async getMessages(number) {
         const dir = this._dir;
         const files = await dir.readdir();
         const wanted = number ? files.slice(-number) : files;
@@ -140,16 +115,8 @@ class MessageManager {
     }
 
     //deletes stored messages, if number supplied, that number of messages is deleted (from earliest)
-    empty(number) {
-        if (number) {
-            const dir = this._dir;
-            const files = dir.readdirSync();
-            const toDiscard = number ? files.slice(number) : files;
-            for (let file of toDiscard)
-                dir.unlinkSync(file);
-        } else {
-            this._dir.empty();
-        }
+    async empty(number) {
+        await this._dir.empty(number);
     }
 }
 
@@ -176,7 +143,7 @@ class PhotoManager {
     }
 
     //stores the message and downloads its associated photo at its highest resolution
-    //returns a clone of the passed in message object including a .path attribute containing the absolute path of the photo
+    //returns a clone of the passed in message object including a .photo attribute containing base64 encoded image string
     async store(message) {
         //get maximum resolution file id
         const photo = message.photo;
@@ -185,39 +152,30 @@ class PhotoManager {
 
         //download photo to store directory
         const {...toStore} = message;
-        toStore.path = await this.bot.downloadFile(fileId, this._p.location);
+
+        //TODO: find a way to abstract away from using fs here
+        const path = await this.bot.downloadFile(fileId, this._p.location);
+        toStore.photo = 'data:image/jpeg;base64,' + (await util.promisify(fs.readFile)(path)).toString('base64');
 
         //store associated message
         await this._m.store(toStore);
-
         return toStore;
     }
 
-    //returns an array of the absolute paths of photos stored, arranged in chronological order
-    getPhotos(number) {
-        const messages = this._m.getMessages(number);
-        return messages.map(message => message.path);
+    //returns a Promise that resolves into an array of the base64 encoded images strings of photos stored, arranged in chronological order
+    async getPhotos(number) {
+        const messages = await this._m.getMessages(number);
+        return messages.map(message => message.photo);
     }
 
-    //async version of getPhotos()
-    async getPhotosAsync(number) {
-        const messages = await this._m.getMessagesAsync(number);
-        return messages.map(message => message.path);
-    }
-
-    //returns an array of messages stored, arranged in chronological order
+    //returns a Promise that resolves to an array of messages stored, arranged in chronological order
     getMessages(number) {
         return this._m.getMessages(number);
     }
 
-    //async version of getMessages()
-    getMessagesAsync(number) {
-        return this._m.getMessagesAsync(number);
-    }
-
     //deletes all stored messages, does not delete the downloaded photos
-    empty(number) {
-        this._m.empty(number);
+    async empty(number) {
+        await this._m.empty(number);
     }
 
     //checks if there are no stored messages, does not reflect state of photos directory
@@ -226,9 +184,9 @@ class PhotoManager {
     }
 
     //flushes the entire manager, removing all stored content, including images
-    flush() {
-        this._m.empty();
-        this._p.empty();
+    async flush() {
+        await this._m.empty();
+        await this._p.empty();
     }
 
     get size() {

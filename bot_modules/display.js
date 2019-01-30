@@ -43,9 +43,9 @@ class TextDisplay extends Display {
     }
 
     subscribe(socket) {
-        socket.on('get_texts', data => {
+        socket.on('get_texts', async data => {
             if (data.id === this.id) {
-                const messages = this._msgMgr.getMessages(data.number);
+                const messages = await this._msgMgr.getMessages(data.number);
                 socket.emit('texts', {
                     id: this.id,
                     messages: messages,
@@ -73,28 +73,17 @@ class PhotoDisplay extends Display {
     subscribe(socket) {
         socket.on('get_photos', async data => {
             if (data.id === this.id) {
-                const messages = this._photoMgr.getMessages(data.number);
-                const promises = messages.map(async message => {
-                    message.photo = 'data:image/jpeg;base64,' +
-                        (await util.promisify(fs.readFile)(message.path)).toString('base64');
-                    delete message.path;
-                    return message;
-                });
-                const converted = await Promise.all(promises);
+                const messages = await this._photoMgr.getMessages(data.number);
                 socket.emit('photos', {
                     id: this.id,
-                    messages: converted,
+                    messages: messages,
                 });
             }
         });
         super.subscribe(socket);
     }
 
-    async displayCallback(message, socket) {
-        const photoPath = message.path;
-        const photo = await util.promisify(fs.readFile)(photoPath);
-        message.photo = 'data:image/jpeg;base64,' + photo.toString('base64');
-        delete message.path;
+    displayCallback(message, socket) {
         socket.emit('photos', {
             id: this.id,
             messages: [message],

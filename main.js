@@ -28,16 +28,19 @@ function run() {
 //Set up Admin Pool(
     const adminPoolDirPath = path.join(__dirname, 'info', 'admins');
     const adminPool = new IDPool(adminPoolDirPath);
+    function isAdmin(id) {
+        return adminPool.isInPool(id);
+    }
 
-    bot.onCommand('/ahoy_matey', message => {
+    bot.onCommand('/ahoy_matey', async message => {
         const id = message.chat.id;
-        adminPool.addToPool(id);
+        await adminPool.addToPool(id);
         bot.sendMessage(id, '<b>Privileged PubsBot commands can now be used in this chat</b>');
     });
 
-    bot.onCommand('/bye_matey', message => {
+    bot.onCommand('/bye_matey', async message => {
         const id = message.chat.id;
-        adminPool.removeFromPool(id);
+        await adminPool.removeFromPool(id);
         bot.sendMessage(id, '<b>This chat may no longer use privileged PubsBot commands</b>')
     });
 
@@ -64,11 +67,11 @@ function run() {
 
 
 //Start handler
-    bot.onCommand('/start', message => {
+    bot.onCommand('/start', async message => {
         const id = message.chat.id;
         const reply = 'Hello<b> ' + message.chat.first_name + '</b>!\n\n' +
             commandsText +
-            (adminPool.isInPool(id) ? privCommandsText : '');
+            ((await adminPool.isInPool(id)) ? privCommandsText : '');
         bot.sendMessage(id, reply);
     });
 
@@ -150,20 +153,20 @@ function run() {
     const posterVetterInfoDirPath = path.join(__dirname, 'info', 'poster_vetters');
     const posterVetter = new Vetter(posterVetterInfoDirPath, bot);
 
-    bot.onCommand('/vetp', message => {
+    bot.onCommand('/vetp', async message => {
         const id = message.chat.id;
-        if (!adminPool.isInPool(id)) return;
-        posterVetter.addToPool(id);
+        if (! await isAdmin(id)) return;
+        await posterVetter.addToPool(id);
         bot.sendMessage(id, '<b>You may now receive posters submitted for vetting</b>\n' +
             'Use the command /xvetp anytime to stop receiving poster submissions');
     }, {
         group: true
     });
 
-    bot.onCommand('/xvetp', message => {
+    bot.onCommand('/xvetp', async message => {
         const id = message.chat.id;
-        if (!adminPool.isInPool(id)) return;
-        posterVetter.removeFromPool(id);
+        if (! await isAdmin(id)) return;
+        await posterVetter.removeFromPool(id);
         bot.sendMessage(id, '<b>You have now no longer a poster vetter</b>');
     }, {
         group: true
@@ -209,20 +212,20 @@ function run() {
     const ancVetterDirPath = path.join(__dirname, 'info', 'anc_vetters');
     const ancVetter = new Vetter(ancVetterDirPath, bot);
 
-    bot.onCommand('/veta', message => {
+    bot.onCommand('/veta', async message => {
         const id = message.chat.id;
-        if (!adminPool.isInPool(id)) return;
-        ancVetter.addToPool(id);
+        if (! await isAdmin(id)) return;
+        await ancVetter.addToPool(id);
         bot.sendMessage(id, '<b>You may now receive announcements submitted for vetting</b>\n' +
             'Use the command /xveta anytime to stop receiving poster submissions');
     }, {
         group: true
     });
 
-    bot.onCommand('/xveta', message => {
+    bot.onCommand('/xveta', async message => {
         const id = message.chat.id;
-        if (!adminPool.isInPool(id)) return;
-        ancVetter.removeFromPool(id);
+        if (! await isAdmin(id)) return;
+        await ancVetter.removeFromPool(id);
         bot.sendMessage(id, '<b>You are now no longer an announcement vetter</b>');
     }, {
         group: true
@@ -291,17 +294,17 @@ function run() {
     const notifyListDirPath = path.join(__dirname, 'info', 'notify_list');
     const notifier = new Notify(notifyListDirPath, bot);
 
-    bot.onCommand('/subscribe', message => {
+    bot.onCommand('/subscribe', async message => {
         const id = message.chat.id;
-        notifier.addToPool(id);
+        await notifier.addToPool(id);
         bot.sendMessage(id, '<b>This chat is now subscribed to PubsBot Notifications!</b>');
     }, {
         group: true
     });
 
-    bot.onCommand('/unsubscribe', message => {
+    bot.onCommand('/unsubscribe', async message => {
         const id = message.chat.id;
-        notifier.removeFromPool(id);
+        await notifier.removeFromPool(id);
         bot.sendMessage(id, '<b>This chat is now unsubscribed to PubsBot Notifications</b>')
     }, {
         group: true
@@ -323,7 +326,7 @@ function run() {
 //Reset Command Handler
     bot.onCommand('/reset', async message => {
         const id = message.chat.id;
-        if (!adminPool.isInPool(id)) return;
+        if (! await isAdmin(id)) return;
         const r = bot.createRequest();
         r.onResponse = message => {
             if (message.text === '0000') {
@@ -339,9 +342,9 @@ function run() {
                 bot.sendMessage('<b>Sorry, invalid code</b>');
             }
         };
-        r.onCancel = message => {
+        r.onCancel = query => {
             bot.sendMessage(id, '<b>Reset Cancelled</b>');
-        }
+        };
         r.send(id, '<b>WARNING: You are resetting PubsBot</b>\n' +
             'Resetting the bot flushes all existing files and data submitted to the bot since its last reset,\n' +
             'including all admin or any rights granted for ALL users. However, its functionality will remain unchanged. ' +
