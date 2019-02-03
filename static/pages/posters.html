@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posters</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/scripts/display_client.js"></script>
+</head>
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        background-color: #262626;
+        color: white;
+        font-family: "Calibri Light";
+        overflow: hidden;
+    }
+    #header {
+        height: 15vh;
+        text-align: center;
+    }
+    #header h1 {
+        font-size: 4em;
+        margin: 5vh 0 0 0;
+    }
+    #poster_box {
+        height: 85vh;
+        width: 100vw;
+        line-height: 85vh;
+        font-size: 2em;
+        text-align: center;
+    }
+    .tile {
+        box-sizing: border-box;
+        display: inline-block;
+        background-color: #404040;
+        height: 85%;
+        width: 22vw;
+        padding: 3vh 0;
+        margin: 5vh 1.5vw;
+        box-shadow: 0 5px 10px black;
+        border-radius: 10px;
+        position: relative;
+        bottom: 0;
+        transition-duration: 1s;
+        transition-timing-function: ease-in-out;
+    }
+    .bop {
+        background-color: #909090;
+        bottom: 15px;
+        transition-duration: 1s;
+        transition-timing-function: ease-in-out;
+    }
+    .poster {
+        height: 85%;
+    }
+    .qr {
+        height: 15%;
+        padding: 10px;
+    }
+    img {
+        box-shadow: 0 5px 20px black;
+        border: 5px solid #404040;
+    }
+    .poster > img {
+        display: block;
+        max-height: 95%;
+        max-width: 80%;
+        border-radius: 10px;
+        margin: auto;
+    }
+    .qr > img {
+        box-sizing: border-box;
+        display: block;
+        height: 80%;
+        border: 5px solid white;
+        border-radius: 3px;
+        margin: auto;
+    }
+</style>
+<body>
+    <div id="header">
+        <h1>EVENTS</h1>
+        <p>Here are some events / workshops that are upcoming or ongoing! Scan the <b>QR codes</b> for the relevant links.
+            You may also submit a poster via <b>PubsBot</b> using the /poster command!</p>
+    </div>
+    <div id="poster_box">
+    </div>
+</body>
+<script>
+    const socket = io();
+
+
+    const posterBox = document.querySelector('#poster_box');
+    const client = new PhotoDisplayClient(3, socket);
+
+    const maxPosters = 4;
+    client.onPhotos = function (messages) {
+        if (messages.length !== 0) {
+            messages.forEach(message => {
+                const tile = makePosterTile(message);
+                posterBox.prepend(tile);
+            });
+            while (posterBox.children.length > maxPosters) {
+                posterBox.removeChild(posterBox.lastChild)
+            }
+            animate(posterBox);
+        }
+    };
+    client.getPhotos(maxPosters); //init
+
+    setInterval(() => {
+        if (posterBox.children.length !== 0)
+            animate(posterBox);
+    }, 20000);
+
+    function makePosterTile(message) {
+        const tile = document.createElement('div');
+        tile.innerHTML = `
+            <div class="poster">
+                <img src=${message.photo}>
+            </div>
+            <div class="qr">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${message.caption ? message.caption : 'No link was provided.'}">
+            </div>
+        `;
+        tile.classList.add('tile');
+        return tile;
+    }
+
+    function animate(el) {
+        const children = el.children;
+        for (let i = 0; i < children.length; i++) {
+            const child = children[i];
+            setTimeout(() => child.classList.toggle('bop'), i*200);
+            setTimeout(() => child.classList.toggle('bop'), i*200 + 500);
+        }
+    }
+</script>
+</html>

@@ -1,3 +1,5 @@
+'use strict';
+
 const assert = require('assert');
 const IDPool = require('./idpool');
 const TelegramBot = require('node-telegram-bot-api');

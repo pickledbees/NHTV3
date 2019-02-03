@@ -3,16 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="/scripts/socket.io.js"></script>
+    <script src="/scripts/display_client.js"></script>
 </head>
-<body>
-<script>
-    console.log(1 % 0);
-    var obj1 = {
-        a: 1
+<style>
+    body {
+        padding: 0;
+        margin: 0;
     }
-    var obj2 = Object.create(obj1);
-    console.log(obj1, obj2);
-    console.log([[1],[2]][0][1]);
+    #header {
+        height: 20vh;
+    }
+    #box {
+        height: 80vh;
+    }
+    .frame {
+        height: 80%;
+        width: 20vw;
+        text-align: center;
+        line-height: 100px;
+        margin: 2.5vw;
+        float: left;
+        background-color: black;
+    }
+    .frame > img {
+        max-height: 50%;
+        max-width: 50%;
+        vertical-align: middle;
+    }
+</style>
+<body>
+
+<div id="header"></div>
+<div id="box">
+    <div class="frame">
+        <img src="/images/x_background.jpg">
+    </div>
+    <div class="frame">
+        <img src="/images/x_background.jpg">
+    </div>
+</div>
+
+<script>
+    const socket = io();
 </script>
 </body>
 </html>

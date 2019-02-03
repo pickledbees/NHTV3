@@ -1,3 +1,4 @@
 [
-    {"src":"/pages/calendar.html","delay":500000}
+    {"src":"/pages/dashboard.html","delay":100000},
+    {"src":"/pages/posters.html","delay":60000}
 ]

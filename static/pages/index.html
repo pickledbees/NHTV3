@@ -10,7 +10,7 @@
             margin: 0;
             background-color: black;
             overflow: hidden;
-            font-family: helvetica;
+            font-family: "Calibri Light";
         }
         #frame {
             height: 90vh;
@@ -23,17 +23,19 @@
             background-color: #262626;
             height: 10vh;
             width: 100vw;
-            padding: 5px;
+            padding: 13px;
             line-height: 5vh;
             vertical-align: middle;
         }
         #footer img {
-            border-radius: 1vh;
-            height: 8vh;
+            box-sizing: border-box;
+            border-radius: 5px;
+            box-shadow: 0 5px 5px black;
+            height: 100%;
             float: left;
         }
         #footer p {
-            margin: 10px;
+            margin: 5px 10px;
             float: left;
         }
     </style>
@@ -42,7 +44,7 @@
 <iframe id="frame"></iframe>
 <div id="footer">
     <img src="/images/standard/feedback_qr.png">
-    <p>For suggestions and feedback, please scan the QR code</p>
+    <p>For suggestions and feedback, please scan the <b>QR code</b>.</p>
 </div>
 </body>
 <script src="/scripts/display_client.js"></script>
@@ -59,5 +61,6 @@
         cycler.cycle();
     };
     client.getPages();
+    setInterval(client.getPages.bind(client), 3600000);
 </script>
 </html>

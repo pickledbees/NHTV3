@@ -156,6 +156,7 @@ class PhotoManager {
         //TODO: find a way to abstract away from using fs here
         const path = await this.bot.downloadFile(fileId, this._p.location);
         toStore.photo = 'data:image/jpeg;base64,' + (await util.promisify(fs.readFile)(path)).toString('base64');
+        toStore.caption = swearjar.censor(toStore.caption);
 
         //store associated message
         await this._m.store(toStore);

@@ -5,7 +5,6 @@
 const PubsBot = require('./bot_modules/telegrambots');
 const path = require('path');
 const fs = require('fs');
-const https = require('https');
 const get = require('./bot_modules/get');
 const {File, JSONFile, PhotoManager, MessageManager, Directory} = require('./bot_modules/file_util');
 const {TextDisplay, PhotoDisplay, PagesDisplay} = require('./bot_modules/display');
@@ -19,7 +18,7 @@ const Notify = require('./bot_modules/notify');
 function run() {
     console.log('starting NHTV bot...');
 
-    const TOKEN = fs.readFileSync('C:\\Users\\Lim Han Quan\\Desktop\\TOKENS\\NHTVPROTO.txt', 'utf8');
+    const TOKEN = fs.readFileSync('C:\\Users\\Lim Han Quan\\Desktop\\TOKENS\\testToken.txt', 'utf8');
     const bot = new PubsBot(TOKEN, {polling: true});
 
 
@@ -155,7 +154,7 @@ function run() {
         const id = message.chat.id;
         if (! await isAdmin(id)) return;
         await posterVetter.addToPool(id);
-        bot.sendMessage(id, '<b>You may now receive posters submitted for vetting</b>\n' +
+        bot.sendMessage(id, 'You may now receive posters submitted for vetting.\n' +
             'Use the command /xvetp anytime to stop receiving poster submissions');
     }, {
         group: true
@@ -165,7 +164,7 @@ function run() {
         const id = message.chat.id;
         if (! await isAdmin(id)) return;
         await posterVetter.removeFromPool(id);
-        bot.sendMessage(id, '<b>You have now no longer a poster vetter</b>');
+        bot.sendMessage(id, 'You are now no longer a poster vetter.');
     }, {
         group: true
     });
@@ -199,9 +198,9 @@ function run() {
         if (approved) {
             const stored = await posterPostManager.store(message);
             posterPostDisplay.display(stored);
-            bot.replyToMessage(id, message_id, '<b>Poster has been approved and uploaded!</b>');
+            bot.replyToMessage(id, message_id, 'Poster has been approved and uploaded!');
         } else {
-            bot.replyToMessage(id, message_id, '<b>Sorry, your poster has been rejected.</b>');
+            bot.replyToMessage(id, message_id, 'Sorry, your poster has been rejected.');
         }
     }
 
@@ -214,8 +213,8 @@ function run() {
         const id = message.chat.id;
         if (! await isAdmin(id)) return;
         await ancVetter.addToPool(id);
-        bot.sendMessage(id, '<b>You may now receive announcements submitted for vetting</b>\n' +
-            'Use the command /xveta anytime to stop receiving poster submissions');
+        bot.sendMessage(id, 'You may now receive announcements submitted for vetting.\n' +
+            'Use the command /xveta anytime to stop receiving announcement submissions');
     }, {
         group: true
     });
@@ -224,7 +223,7 @@ function run() {
         const id = message.chat.id;
         if (! await isAdmin(id)) return;
         await ancVetter.removeFromPool(id);
-        bot.sendMessage(id, '<b>You are now no longer an announcement vetter</b>');
+        bot.sendMessage(id, 'You are now no longer an announcement vetter.');
     }, {
         group: true
     });
@@ -257,9 +256,9 @@ function run() {
         if (approved) {
             await ancManager.store(message);
             ancDisplay.display(message);
-            bot.replyToMessage(id, message_id, '<b>Announcement has been approved and uploaded!</b>');
+            bot.replyToMessage(id, message_id, 'Announcement has been approved and uploaded!');
         } else {
-            bot.replyToMessage(id, message_id, '<b>Sorry, your announcement has been rejected.</b>')
+            bot.replyToMessage(id, message_id, 'Sorry, your announcement has been rejected.')
         }
     }
 
@@ -295,7 +294,7 @@ function run() {
     bot.onCommand('/subscribe', async message => {
         const id = message.chat.id;
         await notifier.addToPool(id);
-        bot.sendMessage(id, '<b>This chat is now subscribed to PubsBot Notifications!</b>');
+        bot.sendMessage(id, 'This chat is now subscribed to PubsBot Notifications.');
     }, {
         group: true
     });
@@ -303,7 +302,7 @@ function run() {
     bot.onCommand('/unsubscribe', async message => {
         const id = message.chat.id;
         await notifier.removeFromPool(id);
-        bot.sendMessage(id, '<b>This chat is now unsubscribed to PubsBot Notifications</b>')
+        bot.sendMessage(id, 'This chat is now unsubscribed to PubsBot Notifications.')
     }, {
         group: true
     });
@@ -314,7 +313,7 @@ function run() {
         const r = bot.createRequest();
         r.onResponse = message => {
             notifier.disseminate(message);
-            bot.replyToMessage(id, message.message_id, '<b>Message forwarded to all subscribers of PubsBot Notifications!</b>');
+            bot.replyToMessage(id, message.message_id, 'This message has been forwarded to all subscribers of PubsBot Notifications.');
         };
         r.send(id, 'Send me the message you want to forward to all subscribers of PubsBot notifications:');
         r.cancel(120000);
@@ -340,9 +339,6 @@ function run() {
             } else {
                 bot.sendMessage('<b>Sorry, invalid code</b>');
             }
-        };
-        r.onCancel = query => {
-            bot.sendMessage(id, '<b>Reset Cancelled</b>');
         };
         r.send(id, '<b>WARNING: You are resetting PubsBot</b>\n' +
             'Resetting the bot flushes all existing files and data submitted to the bot since its last reset,\n' +
@@ -377,8 +373,6 @@ function run() {
 
 //Display subscriptions
     io.on('connection', socket => {
-        console.log('client connected');
-
         textPostDisplay.subscribe(socket);
         photoPostDisplay.subscribe(socket);
         posterPostDisplay.subscribe(socket);
