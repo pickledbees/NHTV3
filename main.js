@@ -115,7 +115,7 @@ function run() {
                 r.send(id, "Oops, that's not a text / photo, try again!");
             }
         };
-        r.send(id, 'Send me a text / photo:');
+        r.send(id, '<b>Send me the text/photo you want displayed:</b>');
         r.cancel(120000);
     });
 
@@ -181,8 +181,9 @@ function run() {
                 r.send(id, "Oops, that's not a photo, try again!");
             }
         };
-        r.send(id, "Send me the poster to display!\n\n" +
-            "Include a link in the caption and I'll convert it to a QR code on screen.");
+        r.send(id, "<b>You are now making a poster submission</b>\n\n" +
+            "In the caption, you may also include a very short one-liner for the display. Any links in the caption will automatically be converted to a QR code when displayed.\n\n" +
+            "<b>Send me the poster you want displayed:</b>");
         r.cancel(120000);
     });
 
@@ -193,12 +194,12 @@ function run() {
     async function handlePoster(message) {
         const id = message.chat.id;
         const message_id = message.message_id;
-        bot.replyToMessage(id, message_id, 'Poster submitted for vetting.');
+        bot.replyToMessage(id, message_id, 'Poster submitted for vetting. You will be notified of the result soon.');
         const approved = await posterVetter.vet(message);
         if (approved) {
             const stored = await posterPostManager.store(message);
             posterPostDisplay.display(stored);
-            bot.replyToMessage(id, message_id, 'Poster has been approved and uploaded!');
+            bot.replyToMessage(id, message_id, 'Your poster has been approved and uploaded!');
         } else {
             bot.replyToMessage(id, message_id, 'Sorry, your poster has been rejected.');
         }
@@ -240,7 +241,9 @@ function run() {
                 r.send(id, "Oops, that's not a text, try again!");
             }
         };
-        r.send(id, 'Send me the announcement you want to make:');
+        r.send(id, '<b>You are now making an announcement submission</b>\n\n' +
+            'the announcement must be in text format and any links contained within the text, will automatically be converted into a QR code on the display.\n\n' +
+            '<b>Send me the announcement you want to make:</b>');
         r.cancel(120000);
     });
 
@@ -251,12 +254,12 @@ function run() {
     async function handleAnc(message) {
         const id = message.chat.id;
         const message_id = message.message_id;
-        bot.replyToMessage(id, message_id, 'Announcement submitted for vetting.');
+        bot.replyToMessage(id, message_id, 'Announcement submitted for vetting. You will be notified of the result soon.');
         const approved = await ancVetter.vet(message);
         if (approved) {
             await ancManager.store(message);
             ancDisplay.display(message);
-            bot.replyToMessage(id, message_id, 'Announcement has been approved and uploaded!');
+            bot.replyToMessage(id, message_id, 'Your announcement has been approved and uploaded!');
         } else {
             bot.replyToMessage(id, message_id, 'Sorry, your announcement has been rejected.')
         }
@@ -282,7 +285,9 @@ function run() {
                 r.send(id, 'Sorry, the feedback needs to be in text form, try again!');
             }
         };
-        r.send(id, 'Send me your feedback:');
+        r.send(id, '<b>You are now submitting feedback</b>\n\n' +
+            "It's always great to hear about how I can be improved; any constructive feedback is very welcome!\n\n" +
+            "<b>Send me your feedback:</b>");
         r.cancel(120000);
     });
 
@@ -329,8 +334,9 @@ function run() {
             if (message.text === '0000') {
                 textPostManager.empty();
                 photoPostManager.flush();
-                posterPostManager.flush();
                 ancManager.empty();
+                posterPostManager.flush();
+                feedbackManager.empty();
                 adminPool.clearPool();
                 posterVetter.clearPool();
                 ancVetter.clearPool();
@@ -340,7 +346,7 @@ function run() {
                 bot.sendMessage('<b>Sorry, invalid code</b>');
             }
         };
-        r.send(id, '<b>WARNING: You are resetting PubsBot</b>\n' +
+        r.send(id, '<b>WARNING: You are resetting PubsBot</b>\n\n' +
             'Resetting the bot flushes all existing files and data submitted to the bot since its last reset,\n' +
             'including all admin or any rights granted for ALL users. However, its functionality will remain unchanged. ' +
             'All admin rights can be restored with the correct command.\n\n' +

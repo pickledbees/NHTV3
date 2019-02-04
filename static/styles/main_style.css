@@ -1,8 +1,23 @@
-body {
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
+.col {
+    float: left;
+    height: 100%;
+}
+.main {
+    width: 47%;
+}
+.sub {
+    width: 28%;
+}
+.mini {
+    width: 25%
+}
+.box {
     background-color: #262626;
-    color: #f0f0f0;
-    font-family: helvetica;
+    box-sizing: border-box;
+    border: 3px solid black;
+    overflow: hidden;
+}
+.header_wrapper {
+    text-shadow: 0 5px 5px black;
+    text-align: center;
 }

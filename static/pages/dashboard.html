@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cal</title>
+    <title>Dashboard</title>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/scripts/display_client.js"></script>
+    <script src="/scripts/linkify.js"></script>
     <style>
         body {
             padding: 0;
@@ -36,7 +37,6 @@
             overflow: hidden;
         }
         .header_wrapper {
-            text-shadow: 0 5px 5px black;
             text-align: center;
         }
         .header_wrapper img {
@@ -79,13 +79,14 @@
             margin-top: 5px;
             border-radius: 5px;
         }
+        .qr {
+            width: 12%;
+            margin: 10px 10px 5px 0;
+            border: 3px solid white;
+            border-radius: 2px;
+        }
         .important {
             background-color: #301010;
-        }
-        .important > div > div {
-            background-color: #501010;
-            border-color: #501010;
-            width: unset;
         }
         .important > div > div {
             background-color: #501010;
@@ -110,7 +111,7 @@
 <div class="sub col box important">
     <div class="header_wrapper">
         <h2>Official</h2>
-        <p>You can submit an announcement to display using the /anc command!</p>
+        <p>You can submit an announcement to display using the <b>/anc</b> command!</p>
     </div>
     <div id="ancBox" class="feed">
 
@@ -119,7 +120,7 @@
 <div class="mini col box">
     <div class="header_wrapper">
         <h2>Telegram Feed</h2>
-        <p>Post something on this display using the /post command!</p>
+        <p>Post something on this display using the <b>/post</b> command!</p>
     </div>
     <div id="teleBox" class="feed">
     </div>
@@ -140,16 +141,32 @@
     const maxAnc = 5;
     ancClient.onTexts = function (messages) {
         messages.forEach(message => {
+            //main body text
             const div = create('div');
             const p = create('p');
-            const t = create('p');
             p.innerText = message.text;
+            div.appendChild(p);
+
+            //render links
+            const links = linkify.find(message.text);
+            links.forEach(link => {
+                if (link.type === 'url') {
+                    const qr = create('img');
+                    qr.src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + link.value;
+                    qr.classList.add('qr');
+                    div.appendChild(qr);
+                }
+            });
+
+            //generate time stamp
+            const t = create('p');
             t.innerText = '- ' + getLocalDate(message.date);
             t.style.fontSize = '0.5em';
-            div.appendChild(p);
             div.appendChild(t);
+
             ancBox.prepend(div);
         });
+
         while (ancBox.children.length > maxAnc) {
             ancBox.removeChild(ancBox.lastChild);
         }
@@ -175,8 +192,7 @@
     };
     photoClient.onPhotos = function (messages) {
         messages.forEach(message => m.push(message));
-        m = m.sort((a,b) => a.date - b.date);
-        render(m);
+        render(m.sort((a,b) => a.date - b.date));
         teleBox.removeExcess();
 
         textClient.onTexts = function (messages) {
@@ -189,6 +205,8 @@
         }
     };
     textClient.getTexts(10);
+
+
 
     function render(messages) {
         messages.forEach(message => {
@@ -251,10 +269,7 @@
     }
 
     function intToRGB(i){
-        const c = (i & 0x00FFFFFF)
-            .toString(16)
-            .toUpperCase();
-
+        const c = (i & 0x00FFFFFF).toString(16).toUpperCase();
         return "00000".substring(0, 6 - c.length) + c;
     }
 </script>

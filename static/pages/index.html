@@ -17,34 +17,57 @@
             width: 100vw;
             border: none;
         }
-        #footer {
+        .footer {
+            display: flex;
+            align-items: center;
             box-sizing: border-box;
             color: white;
             background-color: #262626;
             height: 10vh;
-            width: 100vw;
+            width: 33.33vw;
             padding: 13px;
-            line-height: 5vh;
-            vertical-align: middle;
+            float: left;
         }
-        #footer img {
+        .footer p {
+            margin: 5px 10px;
+            font-size: 0.8em;
+        }
+        .qr {
             box-sizing: border-box;
             border-radius: 5px;
             box-shadow: 0 5px 5px black;
             height: 100%;
-            float: left;
+            margin: 0 5px;
         }
-        #footer p {
-            margin: 5px 10px;
-            float: left;
+        .left {
+            display: flex;
+            flex-direction: row;
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+        }
+        .right {
+            display: flex;
+            flex-direction: row-reverse;
         }
     </style>
 </head>
 <body>
 <iframe id="frame"></iframe>
-<div id="footer">
-    <img src="/images/standard/feedback_qr.png">
-    <p>For suggestions and feedback, please scan the <b>QR code</b>.</p>
+<div class="footer left">
+    <img class="qr" src="/images/1a.png">
+    <img class="qr" src="/images/2a.png">
+    <img class="qr" src="/images/3a.png">
+    <img class="qr" src="/images/feedback_qr.png">
+    <p>To access <b>PubsBot</b>,<br>scan this <b>QR code!</b></p>
+</div>
+<div class="footer center">
+    <p>This display is managed by the REP Publicity Committee</p>
+</div>
+<div class="footer right">
+    <img class="qr" src="/images/bot_qr.png">
+    <p>For suggestions and feedback, please scan this <b>QR code</b>.<br>You may also send it in using the <b>/feedback</b> command!</p>
 </div>
 </body>
 <script src="/scripts/display_client.js"></script>
