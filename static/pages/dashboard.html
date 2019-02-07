@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <script src="/socket.io/socket.io.js"></script>
     <script src="/scripts/display_client.js"></script>
     <script src="/scripts/linkify.js"></script>
@@ -14,7 +15,7 @@
             color: white;
             height: 100vh;
             width: 100vw;
-            font-family: "Calibri Light";
+            font-family: 'Lato', sans-serif;
             overflow: hidden;
         }
         .col {
@@ -52,9 +53,12 @@
             padding: 0 10%;
         }
         #header {
+            display: flex;
             height: 15vh;
             background-color: #262626;
-            text-align: left;
+            align-content: flex-start;
+            font-size: 1em;
+            align-items: center;
         }
         #dakboard {
             height: 85vh;
@@ -65,6 +69,7 @@
             padding: 10px;
         }
         .tile {
+            overflow: hidden;
             background-color: #404040;
             box-shadow: 0 3px 10px black;
             border-radius: 5px 5px 5px 0;
@@ -90,7 +95,7 @@
             border-radius: 5px;
         }
         .qr {
-            width: 12%;
+            width: 18%;
             margin: 10px 10px 5px 0;
             border: 3px solid white;
             border-radius: 2px;
@@ -104,7 +109,7 @@
             width: unset;
         }
         p {
-            font-size: 0.8em;
+            font-size: 1em;
             padding: 0;
             margin: 0;
         }

@@ -20,7 +20,7 @@ function run() {
 
     const TOKEN = fs.readFileSync('C:\\Users\\Lim Han Quan\\Desktop\\TOKENS\\testToken.txt', 'utf8');
     const bot = new PubsBot(TOKEN, {polling: true});
-    bot.on('channel_post', message => console.log(message.chat.id));
+    bot.on('channel_post', message => console.log(message));
 
 
 //Set up Admin Pool(
