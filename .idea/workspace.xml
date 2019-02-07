@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4243891-a321-4c2a-8ad4-946c90f9bc7d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/images/1a.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/2a.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/3a.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/bot_qr.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/pages/posterboard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/scripts/linkify.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/scripts/vibrant.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot_modules/notify.js" beforeDir="false" afterPath="$PROJECT_DIR$/bot_modules/notify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/error_logs.js" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error_logs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/standard/feedback_qr.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/feedback_qr.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/pages/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/pages/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/pages/page_listing.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/pages/page_listing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/main_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/main_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/pages/posterboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/pages/posterboard.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -36,26 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2059">
-              <caret line="399" column="1" lean-forward="true" selection-start-line="399" selection-start-column="1" selection-end-line="399" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bot_modules/idpool.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="611">
-              <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/pages/posterboard.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1521">
-              <caret line="117" column="9" selection-start-line="117" selection-start-column="9" selection-end-line="117" selection-end-column="9" />
+            <state relative-caret-position="130">
+              <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -63,35 +37,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/pages/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2977">
-              <caret line="229" column="35" lean-forward="true" selection-start-line="229" selection-start-column="35" selection-end-line="229" selection-end-column="35" />
+            <state relative-caret-position="2899">
+              <caret line="223" column="28" selection-start-line="223" selection-start-column="28" selection-end-line="223" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/pages/page_listing.js">
+        <entry file="file://$PROJECT_DIR$/static/pages/posterboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26">
-              <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/pages/posters.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1092">
-              <caret line="84" column="62" selection-start-line="84" selection-start-column="62" selection-end-line="84" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/pages/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1066">
-              <caret line="82" column="29" lean-forward="true" selection-start-line="82" selection-start-column="29" selection-end-line="82" selection-end-column="29" />
+            <state relative-caret-position="1482">
+              <caret line="184" lean-forward="true" selection-start-line="184" selection-end-line="184" />
             </state>
           </provider>
         </entry>
@@ -129,6 +85,7 @@
       <find>textPos</find>
       <find>getLocalDate</find>
       <find>feed</find>
+      <find>subscribe</find>
     </findStrings>
     <replaceStrings>
       <replace>textHandler</replace>
@@ -192,7 +149,6 @@
         <option value="$PROJECT_DIR$/bot_modules/telegrambots.js" />
         <option value="$PROJECT_DIR$/bot_modules/get.js" />
         <option value="$PROJECT_DIR$/bot_modules/idpool.js" />
-        <option value="$PROJECT_DIR$/bot_modules/notify.js" />
         <option value="$PROJECT_DIR$/bot_modules/vetter.js" />
         <option value="$PROJECT_DIR$/static/pages/test.html" />
         <option value="$PROJECT_DIR$/static/pages/cal.html" />
@@ -202,11 +158,12 @@
         <option value="$PROJECT_DIR$/static/scripts/linkify.js" />
         <option value="$PROJECT_DIR$/static/scripts/vibrant.js" />
         <option value="$PROJECT_DIR$/static/styles/main_style.css" />
-        <option value="$PROJECT_DIR$/static/pages/dashboard.html" />
         <option value="$PROJECT_DIR$/static/pages/page_listing.js" />
         <option value="$PROJECT_DIR$/static/pages/index.html" />
+        <option value="$PROJECT_DIR$/bot_modules/notify.js" />
         <option value="$PROJECT_DIR$/static/pages/posterboard.html" />
         <option value="$PROJECT_DIR$/main.js" />
+        <option value="$PROJECT_DIR$/static/pages/dashboard.html" />
       </list>
     </option>
   </component>
@@ -228,7 +185,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -236,10 +192,22 @@
               <item name="NHTV3" type="b2602c69:ProjectViewProjectNode" />
               <item name="NHTV3" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="NHTV3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NHTV3" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NHTV3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NHTV3" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -256,18 +224,18 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\static\images" />
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\images" />
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\pages" />
+      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\custom_elements" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\static\images" />
       <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\static\test" />
       <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\static" />
       <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\images\standard" />
       <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\pages" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\static\images" />
-      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\images" />
-      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\pages" />
-      <recent name="C:\Users\Lim Han Quan\WebstormProjects\NHTV3\custom_elements" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -402,21 +370,26 @@
       <workItem from="1549265560328" duration="9634000" />
       <workItem from="1549293246258" duration="7575000" />
       <workItem from="1549301893988" duration="32000" />
+      <workItem from="1549517352217" duration="645000" />
+      <workItem from="1549520764959" duration="6133000" />
+      <workItem from="1549528648228" duration="1400000" />
+      <workItem from="1549537384978" duration="82000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="541595000" />
+    <option name="totallyTimeSpent" value="549855000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" weight="0.24960254" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.7669492" visible="true" weight="0.23211446" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.7669492" visible="true" weight="0.23211446" />
       <window_info id="Favorites" order="2" sideWeight="0.23305085" side_tool="true" weight="0.14149444" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.42628774" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.21492007" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.13854352" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39964476" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -439,15 +412,6 @@
     </ignored-roots>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_24.jpg" />
-    <entry file="file://$PROJECT_DIR$/posts/photo_posts/_photos/file_21.jpg" />
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="17577" column="17" selection-start-line="17577" selection-start-column="17" selection-end-line="17577" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/posts/text_posts/1548093794.js" />
     <entry file="file://$PROJECT_DIR$/info/poster_vetters/303614082.txt" />
     <entry file="file://$PROJECT_DIR$/info/poster_vetters/303614082" />
@@ -521,13 +485,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
           <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bot_modules/notify.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="7" column="32" lean-forward="true" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -616,34 +573,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2059">
-          <caret line="399" column="1" lean-forward="true" selection-start-line="399" selection-start-column="1" selection-end-line="399" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bot_modules/idpool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/pages/posterboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1521">
-          <caret line="117" column="9" selection-start-line="117" selection-start-column="9" selection-end-line="117" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/pages/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2977">
-          <caret line="229" column="35" lean-forward="true" selection-start-line="229" selection-start-column="35" selection-end-line="229" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/pages/page_listing.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
@@ -661,7 +590,47 @@
     <entry file="file://$PROJECT_DIR$/static/pages/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1066">
-          <caret line="82" column="29" lean-forward="true" selection-start-line="82" selection-start-column="29" selection-end-line="82" selection-end-column="29" />
+          <caret line="82" column="29" selection-start-line="82" selection-start-column="29" selection-end-line="82" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/info/channel_whitelist/testchannellolhanquan" />
+    <entry file="file://$PROJECT_DIR$/info/channel_whitelist/-1001234018843" />
+    <entry file="file://$PROJECT_DIR$/bot_modules/notify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="16" column="51" lean-forward="true" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bot_modules/idpool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/info/subscribed_channels/-1001234018843">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/pages/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2899">
+          <caret line="223" column="28" selection-start-line="223" selection-start-column="28" selection-end-line="223" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/pages/posterboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1482">
+          <caret line="184" lean-forward="true" selection-start-line="184" selection-end-line="184" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
         </state>
       </provider>
     </entry>

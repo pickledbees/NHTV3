@@ -14,10 +14,8 @@ class Notify extends IDPool{
     async disseminate(message) {
         const id = message.chat.id;
         const message_id = message.message_id;
-        (await this.getMembers()).forEach(member => {
-            this.bot.sendMessage(member, '<b>*Notification*</b>')
-                .then(() => this.bot.forwardMessage(member, id, message_id));
-        });
+        (await this.getMembers()).forEach(member =>
+            this.bot.forwardMessage(member, id, message_id));
     }
 }
 

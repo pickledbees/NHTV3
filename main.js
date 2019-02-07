@@ -20,6 +20,7 @@ function run() {
 
     const TOKEN = fs.readFileSync('C:\\Users\\Lim Han Quan\\Desktop\\TOKENS\\testToken.txt', 'utf8');
     const bot = new PubsBot(TOKEN, {polling: true});
+    bot.on('channel_post', message => console.log(message.chat.id));
 
 
 //Set up Admin Pool(
@@ -47,7 +48,7 @@ function run() {
         '/post - Send a text / photo to the screen\n' +
         '/poster - Send a poster to the screen\n' +
         '/anc - Send an announcement to the screen\n' +
-        //'/news - Get announcements displayed on the PubsBot Screen\n' +
+        '/news - Get announcements displayed on the PubsBot Screen\n' +
         '/subscribe - Subscribe to PubsBot notifications\n' +
         '/unsubscribe - Unsubscribe to PubsBot notifications\n' +
         '/cats - wait what?\n' +
@@ -146,6 +147,10 @@ function run() {
     }
 
 
+//Channel notifier
+    const channelNotifier = new Notify(path.join(__dirname, 'info', 'subscribed_channels'), bot);
+
+
 //Prepare vetters for Posters
     const posterVetterInfoDirPath = path.join(__dirname, 'info', 'poster_vetters');
     const posterVetter = new Vetter(posterVetterInfoDirPath, bot);
@@ -199,6 +204,7 @@ function run() {
         if (approved) {
             const stored = await posterPostManager.store(message);
             posterPostDisplay.display(stored);
+            channelNotifier.disseminate(message);
             bot.replyToMessage(id, message_id, 'Your poster has been approved and uploaded!');
         } else {
             bot.replyToMessage(id, message_id, 'Sorry, your poster has been rejected.');
@@ -259,14 +265,35 @@ function run() {
         if (approved) {
             await ancManager.store(message);
             ancDisplay.display(message);
+            channelNotifier.disseminate(message);
             bot.replyToMessage(id, message_id, 'Your announcement has been approved and uploaded!');
         } else {
             bot.replyToMessage(id, message_id, 'Sorry, your announcement has been rejected.')
         }
     }
 
-    bot.onCommand('/news', message => {
-        //TODO: implement
+
+//Set up channel snooping for announcements
+//does not get called on bot posts
+    bot.on('channel_post', async message => {
+        if (await channelNotifier.isInPool(message.chat.id)) {
+            if (message.text) {
+                const stored = await ancManager.store(message);
+                ancDisplay.display(stored);
+            } else if (message.photo) {
+                const stored = await posterPostManager.store(message);
+                posterPostDisplay.display(stored);
+            }
+        }
+    });
+
+
+//Set up news getters
+    bot.onCommand('/news', async message => {
+        const ancs = await ancManager.getMessages(5);
+        let text = `<b>Here are the latest announcements</b> (${ancs.length})\n\n`;
+        ancs.forEach((anc, index) => text += `<b>${index+1}.</b>\n${anc.text}\n<b>${getLocalDate(anc.date)}</b>\n\n`);
+        bot.sendMessage(message.chat.id, text);
     });
 
 
@@ -421,4 +448,10 @@ function run() {
                 return joined;
             return pather(joined, ..._args);
         }
+    }
+
+//Date Converter
+    function getLocalDate(timestamp) {
+        const time = timestamp*1000 - new Date().getTimezoneOffset()*60000;
+        return new Date(time).toUTCString().slice(0, -3);
     }
