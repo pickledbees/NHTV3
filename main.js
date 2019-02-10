@@ -6,6 +6,7 @@ const PubsBot = require('./bot_modules/telegrambots');
 const path = require('path');
 const fs = require('fs');
 const get = require('./bot_modules/get');
+const util = require('util');
 const {File, JSONFile, PhotoManager, MessageManager, Directory} = require('./bot_modules/file_util');
 const {TextDisplay, PhotoDisplay, PagesDisplay} = require('./bot_modules/display');
 const IDPool = require('./bot_modules/idpool');
@@ -48,7 +49,7 @@ function run() {
         '/post - Send a text / photo to the screen\n' +
         '/poster - Send a poster to the screen\n' +
         '/anc - Send an announcement to the screen\n' +
-        '/news - Get announcements displayed on the PubsBot Screen\n' +
+        '/news - Get announcements that are displayed on the screen\n' +
         '/subscribe - Subscribe to PubsBot notifications\n' +
         '/unsubscribe - Unsubscribe to PubsBot notifications\n' +
         '/cats - wait what?\n' +
@@ -60,6 +61,7 @@ function run() {
         '/veta - Become an announcement vetter\n' +
         '/xveta - Stop being an announcement vetter\n' +
         '/send - Send a message to all subscribers\n' +
+        '/bot_post - Send a text / photo to the screen as PubsBot' +
         '\n' +
         '/reset - Reset the bot to a clean configuration';
 
@@ -82,25 +84,35 @@ function run() {
 
 
 //Cat replies
-    bot.onCommand('/cats', message => {
+    const catCount = new JSONFile(path.join(__dirname, 'info', 'cat_count.js'));
+
+    bot.onCommand('/cats', async message => {
         const id = message.chat.id;
         bot.sendMessage(id, 'Fetching a feline friend for you...');
-        get('https://api.thecatapi.com/v1/images/search?size=full\'')
-            .then(data => {
-                const purl = JSON.parse(data)[0].url;
-                bot.sendPhoto(id, purl, {
-                    caption: (() => {
-                        let num = Math.floor(Math.random() * 20);
-                        const meows = [];
-                        while (num--)
-                            meows.push(Math.random() > 0.4 ? 'meow' : 'Meow');
-                        return meows;
-                    })().join(' ')
+        const data = await get('https://api.thecatapi.com/v1/images/search?size=full\'');
+        const purl = JSON.parse(data)[0].url;
+        //increment cat count
+        catCount.read(async (err, obj) => {
+            if (!err) {
+                obj.count = obj.count + 1;
+                await bot.sendPhoto(id, purl, {
+                    parse_mode: 'HTML',
+                    caption: `\nTotal cat photos requested from PubsBot so far: <b>${obj.count}</b>`
                 });
-            })
+                catCount.write(obj, () => {});
+            }
+        });
     }, {
         group: true
     });
+
+    function meow() {
+        let num = Math.floor(Math.random() * 20);
+        const meows = [];
+        while (num--)
+            meows.push(Math.random() > 0.4 ? 'meow' : 'Meow');
+        return meows.join(' ');
+    }
 
 
 //Set up Text / Photo post handlers
@@ -145,6 +157,27 @@ function run() {
                 bot.replyToMessage(id, message.message_id, 'Photo uploaded!');
             });
     }
+
+
+//Post as a TelegramBot
+    bot.onCommand('/bot_post', async message => {
+        const id = message.chat.id;
+        if (! await adminPool.isInPool(id)) return;
+        const r = bot.createRequest();
+        r.onResponse = async m => {
+            m.chat.username = 'PubsBot';
+            if (m.text) {
+                handleTextPost(m);
+            } else if (m.photo) {
+                handlePhotoPost(m);
+            } else {
+                r.send(m.chat.id, "Oops, that's not a text/photo, try again!")
+            }
+        };
+        r.send(id, '<b>Send me the text/photo you want displayed as PubsBot:</b>');
+        r.cancel(120000);
+    });
+
 
 
 //Channel notifier
@@ -339,9 +372,9 @@ function run() {
         group: true
     });
 
-    bot.onCommand('/send', message => {
+    bot.onCommand('/send', async message => {
         const id = message.chat.id;
-        if (!adminPool.isInPool(id)) return;
+        if (! await adminPool.isInPool(id)) return;
         const r = bot.createRequest();
         r.onResponse = message => {
             notifier.disseminate(message);
@@ -370,7 +403,7 @@ function run() {
                 notifier.clearPool();
                 bot.sendMessage(id, '<b>Bot has been reset</b>');
             } else {
-                bot.sendMessage('<b>Sorry, invalid code</b>');
+                bot.sendMessage(id,'<b>Sorry, invalid code</b>');
             }
         };
         r.send(id, '<b>WARNING: You are resetting PubsBot</b>\n\n' +
@@ -378,7 +411,7 @@ function run() {
             'including all admin or any rights granted for ALL users. However, its functionality will remain unchanged. ' +
             'All admin rights can be restored with the correct command.\n\n' +
             '<b>Send me the reset code to proceed with the reset:</b>');
-        r.cancel(120000);
+        r.cancel(10000); //time out after 10s
     });
 
     console.log('NHTV bot started');

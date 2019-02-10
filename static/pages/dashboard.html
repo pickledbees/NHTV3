@@ -23,13 +23,13 @@
             height: 100%;
         }
         .main {
-            width: 47%;
+            width: 50%;
         }
         .sub {
-            width: 28%;
+            width: 26%;
         }
         .mini {
-            width: 25%
+            width: 24%
         }
         .box {
             background-color: #262626;
@@ -41,7 +41,6 @@
             text-align: center;
         }
         .header_wrapper img {
-            float: left;
             box-sizing: border-box;
             height: 100%;
             padding: 10px;
@@ -57,7 +56,7 @@
             height: 15vh;
             background-color: #262626;
             align-content: flex-start;
-            font-size: 1em;
+            font-size: 1.3em;
             align-items: center;
         }
         #dakboard {
@@ -90,12 +89,12 @@
         }
         .feed div img {
             max-width: 100%;
-            max-height: 33vh;
+            max-height: 40vh;
             margin-top: 5px;
             border-radius: 5px;
         }
         .qr {
-            width: 18%;
+            width: 15%;
             margin: 10px 10px 5px 0;
             border: 3px solid white;
             border-radius: 2px;
@@ -243,7 +242,8 @@
         div.classList.add('tile');
         const p = create('p');
         const name = create('p');
-        name.innerText = message.chat.username;
+        const uName = message.chat.username;
+        name.innerText = uName === undefined ? 'Anonymous' : uName;
         name.style.fontWeight = 'bold';
         div.appendChild(name);
         p.innerText = message.text;
@@ -261,7 +261,8 @@
         div.classList.add('tile');
         const p = create('p');
         const name = create('p');
-        name.innerText = message.chat.username;
+        const uName = message.chat.username;
+        name.innerText = uName === undefined ? 'Anonymous' : uName;
         name.style.fontWeight = 'bold';
         div.appendChild(name);
         const img = create('img');
