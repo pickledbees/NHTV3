@@ -81,10 +81,11 @@
     const client = new PagesDisplayClient(5, socket);
 
     client.onPages = (pages) => {
+        cycler.stop();
         cycler.pages = pages;
         cycler.cycle();
     };
     client.getPages();
-    setInterval(client.getPages.bind(client), 3600000);
+    setTimeout(() => location.reload(true), 900000);
 </script>
 </html>

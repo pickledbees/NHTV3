@@ -125,10 +125,7 @@
     };
     posterClient.getPhotos(MAX);
 
-    setInterval(() => {
-        if (posterBox.children.length !== 0)
-            animate(posterBox);
-    }, 20000);
+    setInterval(() => {if (posterBox.children.length !== 0) animate(posterBox);}, 20000);
 
 
     //definitions

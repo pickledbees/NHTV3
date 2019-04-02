@@ -21,7 +21,7 @@ function run() {
 
     const TOKEN = fs.readFileSync('C:\\Users\\Lim Han Quan\\Desktop\\TOKENS\\testToken.txt', 'utf8');
     const bot = new PubsBot(TOKEN, {polling: true});
-    bot.on('channel_post', message => console.log(message));
+    //bot.on('channel_post', message => console.log(message));
 
 
 //Set up Admin Pool(
@@ -306,6 +306,7 @@ function run() {
     }
 
 
+/*
 //Set up channel snooping for announcements
 //does not get called on bot posts
     bot.on('channel_post', async message => {
@@ -319,13 +320,14 @@ function run() {
             }
         }
     });
+*/
 
 
 //Set up news getters
     bot.onCommand('/news', async message => {
         const ancs = await ancManager.getMessages(5);
         let text = `<b>Here are the latest announcements</b> (${ancs.length})\n\n`;
-        ancs.forEach((anc, index) => text += `<b>${index+1}.</b>\n${anc.text}\n<b>${getLocalDate(anc.date)}</b>\n\n`);
+        ancs.reverse().forEach((anc, index) => text += `<b>${index+1}.</b>\n${anc.text}\n<b>${getLocalDate(anc.date)}</b>\n\n`);
         bot.sendMessage(message.chat.id, text);
     });
 
