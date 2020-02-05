@@ -1,9 +1,11 @@
+'use strict';
+
 const fs = require('fs');
 const {Directory} = require('./file_util');
 
 class IDPool {
     constructor(location) {
-        _assertExists(location);
+        //_assertExists(location);
         this._location = location;
         this._dir = new Directory(location);
     }
@@ -12,13 +14,13 @@ class IDPool {
         return this._location;
     }
 
-    get members() {
-        return this._dir.readdirSync();
+    getMembers() {
+        return this._dir.readdir();
     }
 
     addToPool(id) {
         try {
-            this._dir.writeFileSync(id.toString());
+            return this._dir.writeFile(id.toString());
         } catch (e) {
             throw new Error('failed to add id ' + id + 'to pool: ' + e.message);
         }
@@ -26,15 +28,16 @@ class IDPool {
 
     isInPool(id) {
         try {
-            return this._dir.existsSync(id.toString());
+            return this._dir.exists(id.toString());
         } catch (e) {
             throw new Error('failed to check for id ' + id + e.message);
         }
     }
 
-    removeFromPool(id) {
+    async removeFromPool(id) {
         try {
-            if (this.isInPool(id)) this._dir.unlinkSync(id.toString());
+            if (await this.isInPool(id))
+                return this._dir.unlink(id.toString());
         } catch (e) {
             throw new Error('failed to remove id ' + id + 'from pool: ' + e.message);
         }
@@ -42,7 +45,7 @@ class IDPool {
 
     clearPool() {
         try {
-            this._dir.empty();
+            return this._dir.empty();
         } catch (e) {
             throw new Error('failed to clear pool');
         }

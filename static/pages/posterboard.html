@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posterboard</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/scripts/display_client.js"></script>
+    <script src="/scripts/linkify.js"></script>
+    <script src="/scripts/vibrant.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            color: white;
+            font-family: 'Lato', sans-serif;
+            background-color: #262626;
+        }
+        .box {
+            background-color: #262626;
+            box-sizing: border-box;
+            border: 3px solid black;
+            overflow: hidden;
+        }
+        .header_wrapper {
+            text-align: center;
+        }
+        #header {
+            height: 15vh;
+        }
+        #header h1 {
+            padding-bottom: 0;
+        }
+        #posters {
+            display: flex;
+            justify-content: center;
+            height: 85vh;
+        }
+        .tile {
+            display: inline-block;
+            box-sizing: border-box;
+            border: 5px solid #404040;
+            height: 94%;
+            width: 23vw;
+            margin: 1vw;
+            border-radius: 5px;
+            background-color: #404040;
+            box-shadow: 0 5px 10px black;
+            padding-bottom: 10px;
+            overflow: hidden;
+            float: left;
+            position: relative;
+            bottom: 0;
+            transition-duration: 1s;
+            transition-timing-function: ease-out;
+        }
+        .bop {
+            bottom: 10px;
+            transition-duration: 1s;
+            transition-timing-function: ease-out;
+            background-color: #909090;
+        }
+        .pwrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 5px 10px 5px;
+            height: 70%;
+        }
+        .pwrapper > img {
+            max-height: 100%;
+            max-width: 100%;
+            border-radius: 3px;
+            box-shadow: 0 5px 10px black;
+        }
+        .twrapper {
+            height: 30%;
+            text-align: center;
+        }
+        .twrapper > p {
+            padding: 0;
+            margin: 15px;
+            font-size: 1em;
+        }
+        .twrapper > img {
+            max-height: 30%;
+            border: 5px solid white;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px black;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="header" class="box header_wrapper">
+    <h1>Events</h1>
+    <p>Here are some events / workshops that are upcoming or ongoing! Scan the <b>QR codes</b> for the relevant links.
+        You may also submit a poster via <b>PubsBot</b> using the <b>/poster</b> command!</p>
+</div>
+<div id="posters" class="box"></div>
+</body>
+<script>
+    const socket = io();
+
+    const posterBox = document.getElementById('posters');
+    const posterClient = new PhotoDisplayClient(3, socket);
+
+    const create = document.createElement.bind(document);
+
+    const MAX = 5;
+    posterClient.onPhotos = function (messages) {
+        //attach tiles
+        messages.forEach(message => {
+            const tile = makePosterTile(message);
+            posterBox.prepend(tile);
+        });
+        //remove excess
+        while (posterBox.children.length > MAX) {
+            posterBox.removeChild(posterBox.lastChild);
+        }
+        //play ripple animation
+        animate(posterBox);
+    };
+    posterClient.getPhotos(MAX);
+
+    setInterval(() => {if (posterBox.children.length !== 0) animate(posterBox);}, 20000);
+
+
+    //definitions
+    function makePosterTile(message) {
+        //make wrapper
+        const div = create('div');
+        div.classList.add('tile');
+
+        //make poster img
+        const poster = create('img');
+        poster.src = message.photo;
+
+        //analyse picture colour to find colour for tile border top
+        poster.addEventListener('load', () => {
+            const swatches = new Vibrant(poster).swatches();
+            try {
+                div.style.borderTopColor = swatches.Vibrant.getHex();
+            } catch (e) {
+                div.style.borderTopColor = 'darkorange';
+            }
+        });
+
+        //place poster img in wrapper
+        const pwrapper = create('div');
+        pwrapper.classList.add('pwrapper');
+        pwrapper.appendChild(poster);
+        div.appendChild(pwrapper);
+
+        //text wrapper
+        const twrapper= create('div');
+        twrapper.classList.add('twrapper');
+
+        //fill text wrapper with caption content if available
+        if (message.caption !== undefined) {
+            //attach caption text
+            const text = create('p');
+            text.innerText = message.caption;
+            twrapper.appendChild(text);
+
+            //produce QR code img
+            const links = linkify.find(message.caption);
+            links.forEach(link => {
+                const qr = create('img');
+                qr.src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + link.value;
+                twrapper.appendChild(qr);
+            });
+        }
+
+        //create timestamp
+        const t = create('p');
+        t.innerText = '- ' + getLocalDate(message.date);
+        t.style.fontSize = '0.5em';
+
+        //attach timestamp to text wrapper and then wrapper to tile
+        twrapper.appendChild(t);
+        div.appendChild(twrapper);
+
+        return div;
+    }
+
+    function getLocalDate(timestamp) {
+        const time = timestamp*1000 - new Date().getTimezoneOffset()*60000;
+        return new Date(time).toUTCString().slice(0, -3);
+    }
+
+    function animate(el) {
+        const children = el.children;
+        for (let i = 0; i < children.length; i++) {
+            const child = children[i];
+            setTimeout(() => child.classList.toggle('bop'), i*200);
+            setTimeout(() => child.classList.toggle('bop'), i*200 + 500);
+        }
+    }
+
+</script>
+</html>

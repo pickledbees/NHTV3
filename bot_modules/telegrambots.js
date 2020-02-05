@@ -23,11 +23,8 @@ class _Request {
     }
 
     //sends the request to a chat id
-    //any requests sent to the chat id previously is cancelled before this request is sent
     send(id, text) {
         const bot = this._bot;
-
-        this.cancel(); //cancels current request (if any);
 
         this._listener = message => {
             if (message.chat.id === id) {

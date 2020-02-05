@@ -1,41 +1,43 @@
 'use strict';
 
+//Online Version
+
 const PubsBot = require('./bot_modules/telegrambots');
 const path = require('path');
 const fs = require('fs');
-const https = require('https');
 const get = require('./bot_modules/get');
+const util = require('util');
 const {File, JSONFile, PhotoManager, MessageManager, Directory} = require('./bot_modules/file_util');
 const {TextDisplay, PhotoDisplay, PagesDisplay} = require('./bot_modules/display');
 const IDPool = require('./bot_modules/idpool');
 const Vetter = require('./bot_modules/vetter');
 const Notify = require('./bot_modules/notify');
 
-
-
 //set up bot
 function run() {
     console.log('starting NHTV bot...');
 
-    const TOKEN = fs.readFileSync('C:\\Users\\Lim Han Quan\\Desktop\\TOKENS\\NHTVPROTO.txt', 'utf8');
+    const TOKEN = fs.readFileSync('C:\\Users\\Lim Han Quan\\Desktop\\TOKENS\\deployment.txt', 'utf8');
     const bot = new PubsBot(TOKEN, {polling: true});
-
-    bot.onText('/ok', console.log);
+    //bot.on('channel_post', message => console.log(message));
 
 
 //Set up Admin Pool(
     const adminPoolDirPath = path.join(__dirname, 'info', 'admins');
     const adminPool = new IDPool(adminPoolDirPath);
+    function isAdmin(id) {
+        return adminPool.isInPool(id);
+    }
 
-    bot.onCommand('/ahoy_matey', message => {
+    bot.onCommand('/ahoy_matey', async message => {
         const id = message.chat.id;
-        adminPool.addToPool(id);
+        await adminPool.addToPool(id);
         bot.sendMessage(id, '<b>Privileged PubsBot commands can now be used in this chat</b>');
     });
 
-    bot.onCommand('/bye_matey', message => {
+    bot.onCommand('/bye_matey', async message => {
         const id = message.chat.id;
-        adminPool.removeFromPool(id);
+        await adminPool.removeFromPool(id);
         bot.sendMessage(id, '<b>This chat may no longer use privileged PubsBot commands</b>')
     });
 
@@ -45,7 +47,7 @@ function run() {
         '/post - Send a text / photo to the screen\n' +
         '/poster - Send a poster to the screen\n' +
         '/anc - Send an announcement to the screen\n' +
-        //'/news - Get announcements displayed on the PubsBot Screen\n' +
+        '/news - Get announcements that are displayed on the screen\n' +
         '/subscribe - Subscribe to PubsBot notifications\n' +
         '/unsubscribe - Unsubscribe to PubsBot notifications\n' +
         '/cats - wait what?\n' +
@@ -57,16 +59,17 @@ function run() {
         '/veta - Become an announcement vetter\n' +
         '/xveta - Stop being an announcement vetter\n' +
         '/send - Send a message to all subscribers\n' +
+        '/bot_post - Send a text / photo to the screen as PubsBot' +
         '\n' +
         '/reset - Reset the bot to a clean configuration';
 
 
 //Start handler
-    bot.onCommand('/start', message => {
+    bot.onCommand('/start', async message => {
         const id = message.chat.id;
         const reply = 'Hello<b> ' + message.chat.first_name + '</b>!\n\n' +
             commandsText +
-            (adminPool.isInPool(id) ? privCommandsText : '');
+            ((await adminPool.isInPool(id)) ? privCommandsText : '');
         bot.sendMessage(id, reply);
     });
 
@@ -79,25 +82,35 @@ function run() {
 
 
 //Cat replies
-    bot.onCommand('/cats', message => {
+    const catCount = new JSONFile(path.join(__dirname, 'info', 'cat_count.js'));
+
+    bot.onCommand('/cats', async message => {
         const id = message.chat.id;
         bot.sendMessage(id, 'Fetching a feline friend for you...');
-        get('https://api.thecatapi.com/v1/images/search?size=full\'')
-            .then(data => {
-                const purl = JSON.parse(data)[0].url;
-                bot.sendPhoto(id, purl, {
-                    caption: (() => {
-                        let num = Math.floor(Math.random() * 20);
-                        const meows = [];
-                        while (num--)
-                            meows.push(Math.random() > 0.4 ? 'meow' : 'Meow');
-                        return meows;
-                    })().join(' ')
+        const data = await get('https://api.thecatapi.com/v1/images/search?size=full\'');
+        const purl = JSON.parse(data)[0].url;
+        //increment cat count
+        catCount.read(async (err, obj) => {
+            if (!err) {
+                obj.count = obj.count + 1;
+                await bot.sendPhoto(id, purl, {
+                    parse_mode: 'HTML',
+                    caption: `\nTotal cat photos requested from PubsBot so far: <b>${obj.count}</b>`
                 });
-            })
+                catCount.write(obj, () => {});
+            }
+        });
     }, {
         group: true
     });
+
+    function meow() {
+        let num = Math.floor(Math.random() * 20);
+        const meows = [];
+        while (num--)
+            meows.push(Math.random() > 0.4 ? 'meow' : 'Meow');
+        return meows.join(' ');
+    }
 
 
 //Set up Text / Photo post handlers
@@ -113,7 +126,7 @@ function run() {
                 r.send(id, "Oops, that's not a text / photo, try again!");
             }
         };
-        r.send(id, 'Send me a text / photo:');
+        r.send(id, '<b>Send me the text/photo you want displayed:</b>');
         r.cancel(120000);
     });
 
@@ -144,25 +157,50 @@ function run() {
     }
 
 
+//Post as a TelegramBot
+    bot.onCommand('/bot_post', async message => {
+        const id = message.chat.id;
+        if (! await adminPool.isInPool(id)) return;
+        const r = bot.createRequest();
+        r.onResponse = async m => {
+            m.chat.username = 'PubsBot';
+            if (m.text) {
+                handleTextPost(m);
+            } else if (m.photo) {
+                handlePhotoPost(m);
+            } else {
+                r.send(m.chat.id, "Oops, that's not a text/photo, try again!")
+            }
+        };
+        r.send(id, '<b>Send me the text/photo you want displayed as PubsBot:</b>');
+        r.cancel(120000);
+    });
+
+
+
+//Channel notifier
+    const channelNotifier = new Notify(path.join(__dirname, 'info', 'subscribed_channels'), bot);
+
+
 //Prepare vetters for Posters
     const posterVetterInfoDirPath = path.join(__dirname, 'info', 'poster_vetters');
     const posterVetter = new Vetter(posterVetterInfoDirPath, bot);
 
-    bot.onCommand('/vetp', message => {
+    bot.onCommand('/vetp', async message => {
         const id = message.chat.id;
-        if (!adminPool.isInPool(id)) return;
-        posterVetter.addToPool(id);
-        bot.sendMessage(id, '<b>You may now receive posters submitted for vetting</b>\n' +
+        if (! await isAdmin(id)) return;
+        await posterVetter.addToPool(id);
+        bot.sendMessage(id, 'You may now receive posters submitted for vetting.\n' +
             'Use the command /xvetp anytime to stop receiving poster submissions');
     }, {
         group: true
     });
 
-    bot.onCommand('/xvetp', message => {
+    bot.onCommand('/xvetp', async message => {
         const id = message.chat.id;
-        if (!adminPool.isInPool(id)) return;
-        posterVetter.removeFromPool(id);
-        bot.sendMessage(id, '<b>You have now no longer a poster vetter</b>');
+        if (! await isAdmin(id)) return;
+        await posterVetter.removeFromPool(id);
+        bot.sendMessage(id, 'You are now no longer a poster vetter.');
     }, {
         group: true
     });
@@ -179,8 +217,9 @@ function run() {
                 r.send(id, "Oops, that's not a photo, try again!");
             }
         };
-        r.send(id, "Send me the poster to display!\n\n" +
-            "Include a link in the caption and I'll convert it to a QR code on screen.");
+        r.send(id, "<b>You are now making a poster submission</b>\n\n" +
+            "In the caption, you may also include a very short one-liner for the display. Any links in the caption will automatically be converted to a QR code when displayed.\n\n" +
+            "<b>Send me the poster you want displayed:</b>");
         r.cancel(120000);
     });
 
@@ -191,14 +230,15 @@ function run() {
     async function handlePoster(message) {
         const id = message.chat.id;
         const message_id = message.message_id;
-        bot.replyToMessage(id, message_id, 'Poster submitted for vetting.');
+        bot.replyToMessage(id, message_id, 'Poster submitted for vetting. You will be notified of the result soon.');
         const approved = await posterVetter.vet(message);
         if (approved) {
             const stored = await posterPostManager.store(message);
             posterPostDisplay.display(stored);
-            bot.replyToMessage(id, message_id, '<b>Poster has been approved and uploaded!</b>');
+            channelNotifier.disseminate(message);
+            bot.replyToMessage(id, message_id, 'Your poster has been approved and uploaded!');
         } else {
-            bot.replyToMessage(id, message_id, '<b>Sorry, your poster has been rejected.</b>');
+            bot.replyToMessage(id, message_id, 'Sorry, your poster has been rejected.');
         }
     }
 
@@ -207,21 +247,21 @@ function run() {
     const ancVetterDirPath = path.join(__dirname, 'info', 'anc_vetters');
     const ancVetter = new Vetter(ancVetterDirPath, bot);
 
-    bot.onCommand('/veta', message => {
+    bot.onCommand('/veta', async message => {
         const id = message.chat.id;
-        if (!adminPool.isInPool(id)) return;
-        ancVetter.addToPool(id);
-        bot.sendMessage(id, '<b>You may now receive announcements submitted for vetting</b>\n' +
-            'Use the command /xveta anytime to stop receiving poster submissions');
+        if (! await isAdmin(id)) return;
+        await ancVetter.addToPool(id);
+        bot.sendMessage(id, 'You may now receive announcements submitted for vetting.\n' +
+            'Use the command /xveta anytime to stop receiving announcement submissions');
     }, {
         group: true
     });
 
-    bot.onCommand('/xveta', message => {
+    bot.onCommand('/xveta', async message => {
         const id = message.chat.id;
-        if (!adminPool.isInPool(id)) return;
-        ancVetter.removeFromPool(id);
-        bot.sendMessage(id, '<b>You are now no longer an announcement vetter</b>');
+        if (! await isAdmin(id)) return;
+        await ancVetter.removeFromPool(id);
+        bot.sendMessage(id, 'You are now no longer an announcement vetter.');
     }, {
         group: true
     });
@@ -238,7 +278,9 @@ function run() {
                 r.send(id, "Oops, that's not a text, try again!");
             }
         };
-        r.send(id, 'Send me the announcement you want to make:');
+        r.send(id, '<b>You are now making an announcement submission</b>\n\n' +
+            'the announcement must be in text format and any links contained within the text, will automatically be converted into a QR code on the display.\n\n' +
+            '<b>Send me the announcement you want to make:</b>');
         r.cancel(120000);
     });
 
@@ -249,19 +291,46 @@ function run() {
     async function handleAnc(message) {
         const id = message.chat.id;
         const message_id = message.message_id;
-        bot.replyToMessage(id, message_id, 'Announcement submitted for vetting.');
+        bot.replyToMessage(id, message_id, 'Announcement submitted for vetting. You will be notified of the result soon.');
         const approved = await ancVetter.vet(message);
         if (approved) {
             await ancManager.store(message);
             ancDisplay.display(message);
-            bot.replyToMessage(id, message_id, '<b>Announcement has been approved and uploaded!</b>');
+            channelNotifier.disseminate(message);
+            bot.replyToMessage(id, message_id, 'Your announcement has been approved and uploaded!');
         } else {
-            bot.replyToMessage(id, message_id, '<b>Sorry, your announcement has been rejected.</b>')
+            bot.replyToMessage(id, message_id, 'Sorry, your announcement has been rejected.')
         }
     }
 
-    bot.onCommand('/news', message => {
-        //TODO: implement
+
+/*
+//Set up channel snooping for announcements
+//does not get called on bot posts
+    bot.on('channel_post', async message => {
+        if (await channelNotifier.isInPool(message.chat.id)) {
+            if (message.text) {
+                const stored = await ancManager.store(message);
+                ancDisplay.display(stored);
+            } else if (message.photo) {
+                const stored = await posterPostManager.store(message);
+                posterPostDisplay.display(stored);
+            }
+        }
+    });
+*/
+
+
+//Set up news getters
+    bot.onCommand('/news', async message => {
+        const ancs = await ancManager.getMessages(5);
+        let text = `<b>Here are the latest announcements</b> (${ancs.length})\n\n`;
+        ancs.reverse().forEach((anc, index) => text += `<b>${index+1}.</b>\n${anc.text}\n<b>${getLocalDate(anc.date)}</b>\n\n`);
+        try {
+            bot.sendMessage(message.chat.id, text);
+        } catch(e) {
+            console.log(e);
+        }
     });
 
 
@@ -280,7 +349,9 @@ function run() {
                 r.send(id, 'Sorry, the feedback needs to be in text form, try again!');
             }
         };
-        r.send(id, 'Send me your feedback:');
+        r.send(id, '<b>You are now submitting feedback</b>\n\n' +
+            "It's always great to hear about how I can be improved; any constructive feedback is very welcome!\n\n" +
+            "<b>Send me your feedback:</b>");
         r.cancel(120000);
     });
 
@@ -289,29 +360,29 @@ function run() {
     const notifyListDirPath = path.join(__dirname, 'info', 'notify_list');
     const notifier = new Notify(notifyListDirPath, bot);
 
-    bot.onCommand('/subscribe', message => {
+    bot.onCommand('/subscribe', async message => {
         const id = message.chat.id;
-        notifier.addToPool(id);
-        bot.sendMessage(id, '<b>This chat is now subscribed to PubsBot Notifications!</b>');
+        await notifier.addToPool(id);
+        bot.sendMessage(id, 'This chat is now subscribed to PubsBot Notifications.');
     }, {
         group: true
     });
 
-    bot.onCommand('/unsubscribe', message => {
+    bot.onCommand('/unsubscribe', async message => {
         const id = message.chat.id;
-        notifier.removeFromPool(id);
-        bot.sendMessage(id, '<b>This chat is now unsubscribed to PubsBot Notifications</b>')
+        await notifier.removeFromPool(id);
+        bot.sendMessage(id, 'This chat is now unsubscribed to PubsBot Notifications.')
     }, {
         group: true
     });
 
-    bot.onCommand('/send', message => {
+    bot.onCommand('/send', async message => {
         const id = message.chat.id;
-        if (!adminPool.isInPool(id)) return;
+        if (! await adminPool.isInPool(id)) return;
         const r = bot.createRequest();
         r.onResponse = message => {
             notifier.disseminate(message);
-            bot.replyToMessage(id, message.message_id, '<b>Message forwarded to all subscribers of PubsBot Notifications!</b>');
+            bot.replyToMessage(id, message.message_id, 'This message has been forwarded to all subscribers of PubsBot Notifications.');
         };
         r.send(id, 'Send me the message you want to forward to all subscribers of PubsBot notifications:');
         r.cancel(120000);
@@ -321,30 +392,30 @@ function run() {
 //Reset Command Handler
     bot.onCommand('/reset', async message => {
         const id = message.chat.id;
-        if (!adminPool.isInPool(id)) return;
+        if (! await isAdmin(id)) return;
         const r = bot.createRequest();
         r.onResponse = message => {
             if (message.text === '0000') {
                 textPostManager.empty();
                 photoPostManager.flush();
-                posterPostManager.flush();
                 ancManager.empty();
+                posterPostManager.flush();
+                feedbackManager.empty();
                 adminPool.clearPool();
                 posterVetter.clearPool();
                 ancVetter.clearPool();
+                notifier.clearPool();
                 bot.sendMessage(id, '<b>Bot has been reset</b>');
             } else {
-                bot.sendMessage('<b>Sorry, invalid code</b>');
+                bot.sendMessage(id,'<b>Sorry, invalid code</b>');
             }
         };
-        r.onCancel = message => {
-            bot.sendMessage(id, '<b>Reset Cancelled</b>');
-        }
-        r.send(id, '<b>WARNING: You are resetting PubsBot</b>\n' +
+        r.send(id, '<b>WARNING: You are resetting PubsBot</b>\n\n' +
             'Resetting the bot flushes all existing files and data submitted to the bot since its last reset,\n' +
             'including all admin or any rights granted for ALL users. However, its functionality will remain unchanged. ' +
             'All admin rights can be restored with the correct command.\n\n' +
             '<b>Send me the reset code to proceed with the reset:</b>');
+        r.cancel(10000); //time out after 10s
     });
 
     console.log('NHTV bot started');
@@ -372,8 +443,6 @@ function run() {
 
 //Display subscriptions
     io.on('connection', socket => {
-        console.log('client connected');
-
         textPostDisplay.subscribe(socket);
         photoPostDisplay.subscribe(socket);
         posterPostDisplay.subscribe(socket);
@@ -390,7 +459,7 @@ function run() {
 
 
 //Listen on Port
-    svr.listen(3000);
+    svr.listen(process.env.PORT || 3000);
     console.log('NHTV server started');
 }
 
@@ -416,4 +485,10 @@ function run() {
                 return joined;
             return pather(joined, ..._args);
         }
+    }
+
+//Date Converter
+    function getLocalDate(timestamp) {
+        const time = timestamp*1000 - new Date().getTimezoneOffset()*60000;
+        return new Date(time).toUTCString().slice(0, -3);
     }

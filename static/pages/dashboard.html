@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/scripts/display_client.js"></script>
+    <script src="/scripts/linkify.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background: black;
+            color: white;
+            height: 100vh;
+            width: 100vw;
+            font-family: 'Lato', sans-serif;
+            overflow: hidden;
+        }
+        .col {
+            float: left;
+            height: 100%;
+        }
+        .main {
+            width: 50%;
+        }
+        .sub {
+            width: 26%;
+        }
+        .mini {
+            width: 24%
+        }
+        .box {
+            background-color: #262626;
+            box-sizing: border-box;
+            border: 3px solid black;
+            overflow: hidden;
+        }
+        .header_wrapper {
+            text-align: center;
+        }
+        .header_wrapper img {
+            box-sizing: border-box;
+            height: 100%;
+            padding: 10px;
+        }
+        .header_wrapper h2 {
+            padding: 5px;
+        }
+        .header_wrapper p {
+            padding: 0 10%;
+        }
+        #header {
+            display: flex;
+            height: 15vh;
+            background-color: #262626;
+            align-content: flex-start;
+            font-size: 1.3em;
+            align-items: center;
+        }
+        #dakboard {
+            height: 85vh;
+            width: 100%;
+        }
+        .feed {
+            box-sizing: border-box;
+            padding: 10px;
+        }
+        .tile {
+            overflow: hidden;
+            background-color: #404040;
+            box-shadow: 0 3px 10px black;
+            border-radius: 5px 5px 5px 0;
+            border: 5px solid #404040;
+            padding: 5px 10px;
+            margin: 7px;
+            width: fit-content;
+            position: relative;
+            bottom: 0;
+            transition-duration: 0.5s;
+            transition-timing-function: ease-out;
+        }
+        .bop {
+            background-color: #909090;
+            bottom: 5px;
+            transition-duration: 0.5s;
+            transition-timing-function: ease-out;
+        }
+        .feed div img {
+            max-width: 100%;
+            max-height: 40vh;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+        .qr {
+            width: 15%;
+            margin: 10px 10px 5px 0;
+            border: 3px solid white;
+            border-radius: 2px;
+        }
+        .important {
+            background-color: #301010;
+        }
+        .important > div > div {
+            background-color: #501010;
+            border-color: #501010;
+            width: unset;
+        }
+        p {
+            font-size: 1em;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="main col">
+    <div id="header" class="box header_wrapper">
+        <img src="/images/reclublogo.png">
+        <h1>Renaissance Engineering Programme</h1>
+    </div>
+    <iframe id="dakboard" class="box" src="https://dakboard.com/app?p=750348c81ab252ad50f8217a465579fb"></iframe>
+</div>
+<div class="sub col box important">
+    <div class="header_wrapper">
+        <h2>Official</h2>
+        <p>You can submit an announcement to display using the <b>/anc</b> command!</p>
+    </div>
+    <div id="ancBox" class="feed">
+
+    </div>
+</div>
+<div class="mini col box">
+    <div class="header_wrapper">
+        <h2>Telegram Feed</h2>
+        <p>Post something on this display using the <b>/post</b> command!</p>
+    </div>
+    <div id="teleBox" class="feed">
+    </div>
+</div>
+</body>
+<script>
+    const socket = io();
+
+    const ancClient = new TextDisplayClient(4, socket);
+    const textClient = new TextDisplayClient(1, socket);
+    const photoClient = new PhotoDisplayClient(2, socket);
+
+    const ancBox = document.getElementById('ancBox');
+    const teleBox = document.getElementById('teleBox');
+
+    const create = document.createElement.bind(document);
+
+    const maxAnc = 10;
+    ancClient.onTexts = function (messages) {
+        messages.forEach(message => {
+            //main body text
+            const div = create('div');
+            div.classList.add('tile');
+
+            const p = create('p');
+            p.innerText = message.text;
+            div.appendChild(p);
+
+            //render links
+            const links = linkify.find(message.text);
+            links.forEach(link => {
+                if (link.type === 'url') {
+                    const qr = create('img');
+                    qr.src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + link.value;
+                    qr.classList.add('qr');
+                    div.appendChild(qr);
+                }
+            });
+
+            //generate time stamp
+            const t = create('p');
+            t.innerText = '- ' + getLocalDate(message.date);
+            t.style.fontSize = '0.5em';
+            div.appendChild(t);
+
+            ancBox.prepend(div);
+        });
+
+        while (ancBox.children.length > maxAnc) {
+            ancBox.removeChild(ancBox.lastChild);
+        }
+
+        animate(ancBox);
+    };
+    ancClient.getTexts(maxAnc);
+
+    function getLocalDate(timestamp) {
+        const time = timestamp*1000 - new Date().getTimezoneOffset()*60000;
+        return new Date(time).toUTCString().slice(0, -3);
+    }
+
+    teleBox.removeExcess = () => {
+        while (teleBox.children.length > 10) {
+            teleBox.removeChild(teleBox.lastChild);
+        }
+    };
+
+    //initialise
+    let m = [];
+    textClient.onTexts = function (messages) {
+        messages.forEach(message => m.push(message));
+        photoClient.getPhotos(5);
+    };
+    photoClient.onPhotos = function (messages) {
+        messages.forEach(message => m.push(message));
+        render(m.sort((a,b) => a.date - b.date));
+        teleBox.removeExcess();
+        animate(teleBox);
+
+        textClient.onTexts = function (messages) {
+            messages.forEach(message => teleBox.prepend(makeTextTile(message)));
+            teleBox.removeExcess();
+            animate(teleBox);
+        };
+        photoClient.onPhotos = function (messages) {
+            messages.forEach(message => teleBox.prepend(makePhotoTile(message)));
+            teleBox.removeExcess();
+            animate(teleBox);
+        }
+    };
+    textClient.getTexts(10);
+
+
+    function render(messages) {
+        messages.forEach(message => {
+            const div = message.photo
+            ? makePhotoTile(message)
+            : makeTextTile(message);
+            teleBox.prepend(div);
+        });
+    }
+
+    function makeTextTile(message) {
+        const div = create('div');
+        div.classList.add('tile');
+        const p = create('p');
+        const name = create('p');
+        const uName = message.chat.username;
+        name.innerText = uName === undefined ? 'Anonymous' : uName;
+        name.style.fontWeight = 'bold';
+        div.appendChild(name);
+        p.innerText = message.text;
+        const t = create('p');
+        t.innerText = '- ' + getLocalDate(message.date);
+        t.style.fontSize = '0.5em';
+        div.appendChild(p);
+        div.appendChild(t);
+        div.style.borderLeftColor = getColor(message.chat.username);
+        return div;
+    }
+
+    function makePhotoTile(message) {
+        const div = create('div');
+        div.classList.add('tile');
+        const p = create('p');
+        const name = create('p');
+        const uName = message.chat.username;
+        name.innerText = uName === undefined ? 'Anonymous' : uName;
+        name.style.fontWeight = 'bold';
+        div.appendChild(name);
+        const img = create('img');
+        img.src = message.photo;
+        div.appendChild(img);
+        if (message.caption !== undefined) {
+            p.innerText = message.caption;
+            div.appendChild(p);
+        }
+        const t = create('p');
+        t.innerText = '- ' + getLocalDate(message.date);
+        t.style.fontSize = '0.5em';
+        div.appendChild(t);
+        div.style.borderLeftColor = getColor(message.chat.username);
+        return div;
+    }
+
+    function getColor(code) {
+        return '#' + intToRGB(hash(code));
+    }
+
+    function hash(str) { //java String#hashCode in js form
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = str.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        return hash;
+    }
+
+    function intToRGB(i){
+        const c = (i & 0x00FFFFFF).toString(16).toUpperCase();
+        return "00000".substring(0, 6 - c.length) + c;
+    }
+
+    function animate(el) {
+        const children = el.children;
+        for (let i = 0; i < children.length; i++) {
+            const child = children[i];
+            setTimeout(() => child.classList.toggle('bop'), i*200);
+            setTimeout(() => child.classList.toggle('bop'), i*200 + 500);
+        }
+    }
+</script>
+</html>

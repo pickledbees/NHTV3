@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>NHTV Main Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <script src="/socket.io/socket.io.js"></script>
     <style>
         body {
@@ -10,39 +11,64 @@
             margin: 0;
             background-color: black;
             overflow: hidden;
-            font-family: helvetica;
+            font-family: 'Lato', sans-serif;
         }
         #frame {
-            height: 90vh;
+            height: 89vh;
             width: 100vw;
             border: none;
         }
-        #footer {
+        .footer {
+            display: flex;
+            align-items: center;
             box-sizing: border-box;
             color: white;
             background-color: #262626;
             height: 10vh;
-            width: 100vw;
-            padding: 5px;
-            line-height: 5vh;
-            vertical-align: middle;
-        }
-        #footer img {
-            border-radius: 1vh;
-            height: 8vh;
+            width: 33.33vw;
+            padding: 13px;
             float: left;
         }
-        #footer p {
-            margin: 10px;
-            float: left;
+        .footer p {
+            margin: 5px 11px;
+            font-size: 1em;
+        }
+        .qr {
+            box-sizing: border-box;
+            border-radius: 5px;
+            box-shadow: 0 5px 5px black;
+            height: 100%;
+            margin: 0 5px;
+        }
+        .left {
+            display: flex;
+            flex-direction: row;
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+        }
+        .right {
+            display: flex;
+            flex-direction: row-reverse;
         }
     </style>
 </head>
 <body>
 <iframe id="frame"></iframe>
-<div id="footer">
-    <img src="/images/standard/feedback_qr.png">
-    <p>For suggestions and feedback, please scan the QR code</p>
+<div class="footer left">
+    <img class="qr" src="/images/1a.png">
+    <img class="qr" src="/images/2a.png">
+    <img class="qr" src="/images/3a.png">
+    <img class="qr" src="/images/feedback_qr.png">
+    <p>To access <b>PubsBot</b>,<br>scan this <b>QR code!</b></p>
+</div>
+<div class="footer center">
+    <p>This display is managed by the REP Publicity Committee</p>
+</div>
+<div class="footer right">
+    <img class="qr" src="/images/bot_qr.png">
+    <p>For suggestions and feedback, please scan this <b>QR code</b>.<br>You may also send it in using the <b>/feedback</b> command!</p>
 </div>
 </body>
 <script src="/scripts/display_client.js"></script>
@@ -55,9 +81,11 @@
     const client = new PagesDisplayClient(5, socket);
 
     client.onPages = (pages) => {
+        cycler.stop();
         cycler.pages = pages;
         cycler.cycle();
     };
     client.getPages();
+    setTimeout(() => location.reload(true), 900000);
 </script>
 </html>

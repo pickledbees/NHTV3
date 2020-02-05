@@ -77,13 +77,13 @@
             this.stop();
             this._tid = setInterval(() => {
                 const item = this.getItem(reset);
-                this._update(item);
+                this.update(item);
             }, this.delay);
         },
 
-        _update: function (item) {
+        update: function (item) {
             console.log(item);
-            //To be implemented by extending class
+            //To be overridden by extending class or instance
         },
 
         restart: function () {
@@ -100,7 +100,7 @@
     TextCycler.prototype = {
         constructor: TextCycler,
 
-        _update(item) {
+        update: function(item) {
             this.element.innerText = item;
         }
     };
@@ -114,7 +114,7 @@
     ImgCycler.prototype = {
         constructor: ImgCycler,
 
-        _update(item) {
+        update: function(item) {
             this.element.src = item;
         }
     };
@@ -128,7 +128,7 @@
     HTMLCycler.prototype = {
         constructor: HTMLCycler,
 
-        _update(item) {
+        update: function(item) {
             this.element.innerHTML = item;
         }
     };

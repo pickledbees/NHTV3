@@ -1,0 +1,1 @@
+{"message_id":7675,"from":{"id":303614082,"is_bot":false,"first_name":"Barky","username":"PickleJar","language_code":"en"},"chat":{"id":303614082,"first_name":"Barky","username":"PickleJar","type":"private"},"date":1580910050,"text":"Pretty cool stuff"}
