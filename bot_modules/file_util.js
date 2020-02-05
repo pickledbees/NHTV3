@@ -20,7 +20,8 @@ function _assertExists(location) {
 //directory must be created before instantiating Directory object
 class Directory {
     constructor(location) {
-        _assertExists(location);
+        //_assertExists(location);
+        _mkDirIfNotExist(location);
         this.location = location;
     }
 
@@ -68,6 +69,8 @@ class Directory {
                 fs.unlinkSync(file);
         }
     }
+
+    //backup
 }
 
 //creates a manager that saves messages
@@ -76,7 +79,6 @@ const swearjar = require('swearjar');
 class MessageManager {
     constructor(location) {
         try {
-            _assertExists(location);
             this._dir = new Directory(location);
             this.location = location;
         } catch (error) {
@@ -129,7 +131,6 @@ class PhotoManager {
         const _p = path.join(location, '_photos');
         try {
             assert(bot instanceof TelegramBot);
-            _assertExists(location);
             _mkDirIfNotExist(_m);
             _mkDirIfNotExist(_p);
         } catch (error) {

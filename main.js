@@ -13,13 +13,11 @@ const IDPool = require('./bot_modules/idpool');
 const Vetter = require('./bot_modules/vetter');
 const Notify = require('./bot_modules/notify');
 
-
-
 //set up bot
 function run() {
     console.log('starting NHTV bot...');
 
-    const TOKEN = fs.readFileSync('C:\\Users\\Lim Han Quan\\Desktop\\TOKENS\\testToken.txt', 'utf8');
+    const TOKEN = fs.readFileSync('C:\\Users\\Lim Han Quan\\Desktop\\TOKENS\\deployment.txt', 'utf8');
     const bot = new PubsBot(TOKEN, {polling: true});
     //bot.on('channel_post', message => console.log(message));
 
@@ -328,7 +326,11 @@ function run() {
         const ancs = await ancManager.getMessages(5);
         let text = `<b>Here are the latest announcements</b> (${ancs.length})\n\n`;
         ancs.reverse().forEach((anc, index) => text += `<b>${index+1}.</b>\n${anc.text}\n<b>${getLocalDate(anc.date)}</b>\n\n`);
-        bot.sendMessage(message.chat.id, text);
+        try {
+            bot.sendMessage(message.chat.id, text);
+        } catch(e) {
+            console.log(e);
+        }
     });
 
 
@@ -457,7 +459,7 @@ function run() {
 
 
 //Listen on Port
-    svr.listen(3000);
+    svr.listen(process.env.PORT || 3000);
     console.log('NHTV server started');
 }
 

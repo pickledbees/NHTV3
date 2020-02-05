@@ -5,7 +5,7 @@ const {Directory} = require('./file_util');
 
 class IDPool {
     constructor(location) {
-        _assertExists(location);
+        //_assertExists(location);
         this._location = location;
         this._dir = new Directory(location);
     }
