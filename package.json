@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "download-file": "^0.1.5",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "file-class": "^0.1.3",
     "mkdirp": "^0.5.1",
     "node-telegram-bot-api": "^0.30.0",
